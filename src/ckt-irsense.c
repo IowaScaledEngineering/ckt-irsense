@@ -62,13 +62,22 @@ void init(void)
 	wdt_reset();
 	wdt_enable(WDTO_250MS);
 	wdt_reset();
-	DDRB |= _BV(PB1);
-	
+	DDRB |= _BV(PB1) | _BV(PB3);
 }
 
+#define SUCCESS_MAX 10
+#define SUCCESS_
+
+#define START_SENSE_WINDOW 25
+#define END_SENSE_WINDOW   100
+#define BIT_WIDTH_10US 120
+#define PULSES_PER_BIT (((BIT_WIDTH_10US * 10) / 2) / 25)
 
 int main(void)
 {
+	uint8_t i, pulseReceived = 0;
+	uint8_t successes = 0, trainPresent = 0;
+	
 	// Application initialization
 	init();
 	initialize38kHzTimer();
@@ -78,12 +87,35 @@ int main(void)
 	{
 		wdt_reset();
 
-		pulsesRemaining = 24;
+		pulseReceived = 0;
+		pulsesRemaining = PULSES_PER_BIT;
 
-		_delay_ms(50);
+		for(i=0; i<BIT_WIDTH_10US; i++)
+		{
+			if (i > START_SENSE_WINDOW && i < END_SENSE_WINDOW && (0 == (_BV(PB2) & PINB)))
+			{
+				// Bit received!
+				pulseReceived++;
+			}
+			_delay_us(10);
+		}
 
+		if (pulseReceived > 3 && successes < SUCCESS_MAX)
+			successes++;
+		else if (pulseReceived <= 2 && successes > 0)
+			successes--;
+			
+		if (successes > 7)
+			trainPresent = 1;
+		else if (successes < 3)
+			trainPresent = 0;
 
+		if (trainPresent)
+			PORTB |= _BV(PB3);
+		else
+			PORTB &= ~_BV(PB3);
 
+		_delay_ms(20);
 	}
 }
 
