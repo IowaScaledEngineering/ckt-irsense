@@ -62,7 +62,7 @@ void init(void)
 	wdt_reset();
 	wdt_enable(WDTO_250MS);
 	wdt_reset();
-	DDRB |= _BV(PB1) | _BV(PB3);
+	DDRB |= _BV(PB1) | _BV(PB4);
 }
 
 #define SUCCESS_MAX 10
@@ -92,7 +92,7 @@ int main(void)
 
 		for(i=0; i<BIT_WIDTH_10US; i++)
 		{
-			if (i > START_SENSE_WINDOW && i < END_SENSE_WINDOW && (0 == (_BV(PB2) & PINB)))
+			if (i > START_SENSE_WINDOW && i < END_SENSE_WINDOW && (0 == (_BV(PB3) & PINB)))
 			{
 				// Bit received!
 				pulseReceived++;
@@ -111,9 +111,9 @@ int main(void)
 			trainPresent = 0;
 
 		if (trainPresent)
-			PORTB |= _BV(PB3);
+			PORTB |= _BV(PB4);
 		else
-			PORTB &= ~_BV(PB3);
+			PORTB &= ~_BV(PB4);
 
 		_delay_ms(20);
 	}
