@@ -6,8 +6,6 @@ T 1100 1450 8 10 1 1 0 0 1
 refdes=U?
 T 275 2650 5 10 0 0 0 0 1
 footprint=so8
-T 300 1450 9 10 1 0 0 0 1
-ATtiny85
 T 275 2050 5 10 0 0 0 0 1
 author=Anton Dubniak <twister@tfsoft.org.ua>
 T 275 2450 5 10 0 0 0 0 1
