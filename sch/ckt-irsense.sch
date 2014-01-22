@@ -19,7 +19,7 @@ refdes=C1
 T 60400 55100 5 10 0 0 270 0 1
 device=Capacitor
 T 58900 55000 5 10 1 1 270 2 1
-value=10uF 25V
+value=10uF 20V
 T 58900 55100 5 10 0 0 0 0 1
 footprint=tantalum_a
 T 59400 55000 5 10 1 1 270 0 1
