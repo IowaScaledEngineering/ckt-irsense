@@ -6,11 +6,11 @@ FileVersion[20070407]
 PCB["" 25000 261000]
 
 Grid[100.0 0 0 1]
-Cursor[0 0 0.000000]
+Cursor[0 250500 0.000000]
 PolyArea[3100.006200]
 Thermal[0.500000]
-DRC[800 800 800 1000 2000 800]
-Flags("showdrc,nameonpcb,clearnew,snappin")
+DRC[600 800 600 1000 2000 800]
+Flags("showdrc,nameonpcb,clearnew")
 Groups("1,c:2,s:3")
 Styles["Signal,1000,3600,2000,1000:Power,2500,6000,3500,1000:Fat,4000,6000,3500,1000:Skinny,600,2402,1181,600"]
 
@@ -1104,16 +1104,16 @@ Element["hidename" "TSSOP8W" "U2" "unknown" 17100 145800 6000 -2000 3 100 ""]
 
 	)
 
-Element["hidename,selected" "Vishay_DFN88" "U3" "unknown" 17300 25100 3189 -11615 2 100 "selected"]
+Element["hidename" "Vishay_DFN8" "U3" "unknown" 17300 25100 3189 -11615 2 100 ""]
 (
-	Pad[-2953 3247 -2953 4429 1377 2000 1977 "1" "1" "selected,square,edge2"]
-	Pad[-984 3247 -984 4429 1377 2000 1977 "2" "2" "selected,square,edge2"]
-	Pad[984 3247 984 4429 1377 2000 1977 "3" "3" "selected,square,edge2"]
-	Pad[2953 3247 2953 4429 1377 2000 1977 "4" "4" "selected,square,edge2"]
-	Pad[2953 -4429 2953 -3247 1377 2000 1977 "5" "5" "selected,square"]
-	Pad[984 -4429 984 -3247 1377 2000 1977 "6" "6" "selected,square"]
-	Pad[-984 -4429 -984 -3247 1377 2000 1977 "7" "7" "selected,square"]
-	Pad[-2953 -4429 -2953 -3247 1377 2000 1977 "8" "8" "selected,square"]
+	Pad[-2953 3240 -2953 4435 1365 2000 1965 "1" "1" "square,edge2"]
+	Pad[-984 3240 -984 4435 1365 2000 1965 "2" "2" "square,edge2"]
+	Pad[984 3240 984 4435 1365 2000 1965 "3" "3" "square,edge2"]
+	Pad[2953 3240 2953 4435 1365 2000 1965 "4" "4" "square,edge2"]
+	Pad[2953 -4435 2953 -3240 1365 2000 1965 "5" "5" "square"]
+	Pad[984 -4435 984 -3240 1365 2000 1965 "6" "6" "square"]
+	Pad[-984 -4435 -984 -3240 1365 2000 1965 "7" "7" "square"]
+	Pad[-2953 -4435 -2953 -3240 1365 2000 1965 "8" "8" "square"]
 	ElementLine [-5906 4800 -5906 5400 1000]
 	ElementLine [-5906 -3247 -5906 3247 1000]
 	ElementLine [5906 -3247 5906 3247 1000]
@@ -1145,18 +1145,14 @@ Layer(1 "component")
 	Line[10800 48200 4784 48200 2500 2000 "clearline"]
 	Line[4784 48200 4127 48857 2500 2000 "clearline"]
 	Line[4127 55943 4127 61027 1000 2000 "clearline"]
-	Line[4127 61027 6300 63200 1000 2000 "clearline"]
-	Line[11386 63200 11400 63214 1000 2000 "clearline"]
 	Line[19200 55014 19200 48273 1000 2000 "clearline"]
 	Line[19200 48273 20073 47400 1000 2000 "clearline"]
 	Line[4000 65400 7700 65400 1000 2000 "clearline"]
 	Line[7700 65400 9000 66700 1000 2000 "clearline"]
 	Line[9000 66700 15714 66700 1000 2000 "clearline"]
-	Line[6300 63200 11386 63200 1000 2000 "clearline"]
 	Line[19200 63214 19200 65200 1000 2000 "clearline"]
 	Line[19200 65200 17700 66700 1000 2000 "clearline"]
 	Line[17700 66700 13800 66700 1000 2000 "clearline"]
-	Line[11343 63157 15257 63157 1000 2000 "clearline"]
 	Line[15257 63157 15300 63200 1000 2000 "clearline"]
 	Line[16600 43500 16600 43073 1000 2000 "clearline"]
 	Line[16600 43073 20073 39600 1000 2000 "clearline"]
@@ -1311,6 +1307,9 @@ Layer(1 "component")
 	Line[14800 16100 14800 15000 1000 2000 "clearline"]
 	Line[18284 21262 18284 15216 1000 2000 "clearline"]
 	Line[18284 15216 18350 15150 1000 2000 "clearline"]
+	Line[15300 63200 6327 63200 1000 2000 "clearline"]
+	Line[6327 63200 4127 61000 1000 2000 "clearline"]
+	Line[4127 61000 4127 59500 1000 2000 "clearline"]
 )
 Layer(2 "solder")
 (
@@ -1425,16 +1424,25 @@ Layer(3 "outline")
 )
 Layer(4 "silk")
 (
-	Text[3000 56800 1 100 "Iowa Scaled Eng" "clearline,onsolder"]
 	Text[17200 46400 1 100 "CKT-IRSENSE v1.0" "clearline,onsolder"]
 	Text[17300 217300 1 100 "CC-BY-SA" "clearline,onsolder"]
 	Text[10600 226500 1 100 "(c)2014" "clearline,onsolder"]
+	Text[3000 56800 1 100 "Iowa Scaled Eng" "clearline,onsolder"]
+	Text[20800 14400 0 100 "+" "clearline,onsolder"]
+	Text[16800 251200 0 100 "+" "clearline,onsolder"]
+	Text[15400 111800 0 100 "+V" "clearline,onsolder"]
+	Text[13800 133800 0 100 "GND" "clearline,onsolder"]
+	Text[2200 192700 0 100 "OS" "clearline,onsolder"]
+	Text[1800 224200 0 100 "OD" "clearline,selected,onsolder"]
 )
 Layer(5 "silk")
 (
 	Line[24500 260500 500 260500 1000 2000 "clearline"]
 	Line[500 500 24500 500 1000 2000 "clearline"]
 	Line[24500 260500 24500 500 1000 2000 "clearline"]
+	Line[500 260500 500 500 1000 2000 "clearline"]
+	Text[1300 8400 0 100 "+" "clearline"]
+	Text[22900 208500 0 100 "." "clearline"]
 )
 NetList()
 (
