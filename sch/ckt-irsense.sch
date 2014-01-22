@@ -107,7 +107,7 @@ device=ATtiny45
 T 56700 50950 5 10 1 1 0 0 1
 refdes=U2
 T 55675 52150 5 10 0 0 0 0 1
-footprint=TSSOP8
+footprint=TSSOP8W
 T 55600 51000 5 10 1 1 0 0 1
 device=ATtiny45
 }
