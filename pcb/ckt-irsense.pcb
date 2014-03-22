@@ -6,7 +6,7 @@ FileVersion[20070407]
 PCB["" 25000 261000]
 
 Grid[500.0 0 0 0]
-Cursor[25000 24000 0.000000]
+Cursor[25000 51000 0.000000]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[600 800 600 1000 2000 800]
@@ -1193,7 +1193,6 @@ Layer(1 "component")
 	Line[18400 136300 18400 131379 1000 2000 "clearline"]
 	Line[4000 149443 8464 149443 1000 2000 "clearline"]
 	Line[8464 149443 8621 149600 1000 2000 "clearline"]
-	Line[4200 123300 4100 123200 2500 2000 "clearline"]
 	Line[18421 202858 20969 202858 1000 2000 "clearline"]
 	Line[17421 201858 18421 202858 1000 2000 "clearline"]
 	Line[17421 199058 17421 201858 1000 2000 "clearline"]
@@ -1355,9 +1354,6 @@ Layer(2 "solder")
 	Line[10600 130237 14982 134618 1000 2000 "clearline"]
 	Line[23421 136100 23421 135021 1000 2000 "clearline"]
 	Line[23421 135021 22200 133800 1000 2000 "clearline"]
-	Line[19300 117000 19300 118200 1000 2000 "clearline"]
-	Line[19300 118200 18000 119500 1000 2000 "clearline"]
-	Line[18000 119500 18000 129600 1000 2000 "clearline"]
 	Line[18000 129600 22750 134350 1000 2000 "clearline"]
 	Line[12000 39000 5000 32000 1000 2000 "clearline"]
 	Line[5000 32000 5000 6400 1000 2000 "clearline"]
@@ -1365,6 +1361,9 @@ Layer(2 "solder")
 	Line[23000 34500 23000 120300 1000 2000 "clearline"]
 	Line[23000 120300 21300 122000 1000 2000 "clearline"]
 	Line[21500 11500 16800 6800 1000 2000 "clearline"]
+	Line[18000 120500 18000 129600 1000 2000 "clearline"]
+	Line[19300 117000 19300 119200 1000 2000 "clearline"]
+	Line[19300 119200 18000 120500 1000 2000 "clearline"]
 )
 Layer(3 "gnd")
 (
@@ -1389,14 +1388,14 @@ Layer(5 "outline")
 )
 Layer(6 "silk")
 (
-	Text[17200 46400 1 100 "CKT-IRSENSE v2.0" "clearline,onsolder"]
+	Text[17200 45900 1 100 "CKT-IRSENSE v2.0" "clearline,onsolder"]
 	Text[17300 217300 1 100 "CC-BY-SA" "clearline,onsolder"]
 	Text[10600 226500 1 100 "(c)2014" "clearline,onsolder"]
 	Text[21300 9400 0 100 "+" "clearline,onsolder"]
 	Text[16800 251200 0 100 "+" "clearline,onsolder"]
 	Text[15400 111300 0 100 "+V" "clearline,onsolder"]
 	Text[13400 133421 0 100 "GND" "clearline,onsolder"]
-	Text[2200 192700 0 100 "OS" "clearline,onsolder"]
+	Text[17700 196200 0 100 "OS" "clearline,onsolder"]
 	Text[1800 224200 0 100 "OD" "clearline,onsolder"]
 	Text[3000 56800 1 100 "Iowa Scaled Eng" "clearline,onsolder"]
 )
@@ -1408,6 +1407,10 @@ Layer(7 "silk")
 	Line[500 260500 500 500 1000 2000 "clearline"]
 	Text[21300 3400 0 100 "+" "clearline"]
 	Text[22900 208500 0 100 "." "clearline"]
+	Text[20000 120000 0 150 "-" "clearline"]
+	Text[8000 96000 0 150 "+" "clearline"]
+	Text[20000 190000 0 100 "S" "clearline"]
+	Text[20000 218000 0 100 "D" "clearline"]
 )
 NetList()
 (
