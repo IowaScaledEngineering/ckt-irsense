@@ -1,4 +1,4 @@
-v 20110115 2
+v 20130925 2
 T 67000 40900 9 10 1 0 0 0 1
 Reflective IR model railroad sensor
 T 66800 40600 9 10 1 0 0 0 1
@@ -43,7 +43,7 @@ footprint=0805
 C 48900 52400 1 0 0 photodiode-1.sym
 {
 T 48600 52200 5 10 1 1 90 0 1
-device=VSMB10940
+device=VEMD10940F
 T 48800 52700 5 10 1 1 90 0 1
 refdes=D2
 T 48900 52400 5 10 0 0 0 0 1
@@ -52,7 +52,7 @@ footprint=IR1206
 C 49600 49600 1 90 0 led-3.sym
 {
 T 48850 49450 5 10 1 1 90 0 1
-device=VEMD10940F
+device=VSMB10940
 T 49050 50050 5 10 1 1 90 0 1
 refdes=D1
 T 49600 49600 5 10 0 0 0 0 1
