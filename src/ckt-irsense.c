@@ -26,13 +26,13 @@ LICENSE:
 #include <avr/wdt.h>
 #include <util/delay.h>
 
-#define OCR1A_VALUE  0xC7
+#define OCR1A_VALUE  0xDE
 volatile uint8_t pulsesRemaining = 0;
 
-void initialize38kHzTimer(void)
+void initialize36kHzTimer(void)
 {
 	TCCR1 = _BV(CTC1) | _BV(CS10);
-	OCR1C = OCR1A = OCR1A_VALUE; // 38kHz at 8MHz
+	OCR1C = OCR1A = OCR1A_VALUE; // 36kHz at 8MHz
 	OCR1B = OCR1A_VALUE/2; // 
 	GTCCR = 0;
 	TIMSK &= ~_BV(TOIE1);
@@ -62,7 +62,7 @@ void init(void)
 	wdt_reset();
 	wdt_enable(WDTO_250MS);
 	wdt_reset();
-	DDRB |= _BV(PB1) | _BV(PB4);
+	DDRB |= _BV(PB1) | _BV(PB2) | _BV(PB4);
 }
 
 #define SUCCESS_MAX 10
@@ -80,7 +80,7 @@ int main(void)
 	
 	// Application initialization
 	init();
-	initialize38kHzTimer();
+	initialize36kHzTimer();
 	sei();	
 
 	while (1)
@@ -111,10 +111,15 @@ int main(void)
 			trainPresent = 0;
 
 		if (trainPresent)
+		{
 			PORTB |= _BV(PB4);
+			PORTB &= ~_BV(PB2);
+		}
 		else
+		{
 			PORTB &= ~_BV(PB4);
-
+			PORTB |= _BV(PB2);
+		}
 		_delay_ms(20);
 	}
 }

@@ -26,8 +26,7 @@
 #*************************************************************************
 BASE_NAME = ckt-irsense
 
-# ATmega45/85 8MHz internal oscillator
-#DEVICE  = attiny85
+# ATmega85 8MHz internal oscillator
 DEVICE  = attiny45
 F_CPU   = 8000000
 FUSE_L  = 0xE2
@@ -36,8 +35,6 @@ FUSE_E  = 0xFF
 
 SRCS = $(BASE_NAME).c
 
-#AVRDUDE = avrdude -c avrispmkII -P usb -p $(DEVICE) -B1
-#AVRDUDE_SLOW = avrdude -c avrispmkII -P usb -p $(DEVICE) -B32
 AVRDUDE = avrdude -c usbtiny -P usb -p $(DEVICE) -B1
 AVRDUDE_SLOW = avrdude -c usbtiny -P usb -p $(DEVICE) -B32
 
