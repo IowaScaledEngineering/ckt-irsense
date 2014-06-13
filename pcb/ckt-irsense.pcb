@@ -6,13 +6,13 @@ FileVersion[20070407]
 PCB["" 210000 25000]
 
 Grid[500.0 0 0 0]
-Cursor[90000 25000 0.000000]
+Cursor[0 0 0.000000]
 PolyArea[200000000.000000]
 Thermal[0.500000]
 DRC[600 600 600 800 1300 700]
-Flags("showdrc,nameonpcb,clearnew")
+Flags("showdrc,nameonpcb,clearnew,snappin")
 Groups("1,c:2,s:3")
-Styles["Signal,1000,3000,1400,1000:Power,2500,6000,3500,1000:Fat,4000,6000,3500,1000:Skinny,600,2402,1181,600"]
+Styles["Signal,800,3000,1400,1000:Power,2500,6000,3500,1000:Fat,4000,6000,3500,1000:Skinny,600,2402,1181,600"]
 
 Symbol[' ' 1800]
 (
@@ -953,11 +953,11 @@ Element["hidename" "TMD2671-2side" "U3" "unknown" -663 12500 7826 -8230 0 100 ""
 	Attribute("vendor_part_number" "unknown")
 	Pad[2992 5728 2992 5728 2835 2000 3435 "VDD" "1" "square"]
 	Pad[2992 1909 2992 1909 2835 2000 3435 "SCL" "2" "square"]
-	Pad[2992 -1909 2992 -1909 2835 2000 3435 "GND" "3" "square"]
-	Pad[2992 -5728 2992 -5728 2835 2000 3435 "LEDA" "4" "square"]
-	Pad[2992 -5728 2992 -5728 2835 2000 3435 "LEDK" "5" "onsolder,square"]
-	Pad[2992 -1909 2992 -1909 2835 2000 3435 "LDR" "6" "onsolder,square"]
-	Pad[2992 1909 2992 1909 2835 2000 3435 "INT" "7" "onsolder,square"]
+	Pad[2992 -1909 2992 -1909 2835 0 3435 "GND" "3" "square"]
+	Pad[2992 -5728 2992 -5728 2835 0 3435 "LEDA" "4" "square"]
+	Pad[2992 -5728 2992 -5728 2835 0 3435 "LEDK" "5" "onsolder,square"]
+	Pad[2992 -1909 2992 -1909 2835 0 3435 "LDR" "6" "onsolder,square"]
+	Pad[2992 1909 2992 1909 2835 1200 3435 "INT" "7" "onsolder,square"]
 	Pad[2992 5728 2992 5728 2835 2000 3435 "SDA" "8" "onsolder,square"]
 	ElementLine [1500 8268 5512 8268 1000]
 	ElementLine [1500 -8268 5512 -8268 1000]
@@ -1044,7 +1044,7 @@ Element["" "0805" "C3" "0.1uF" 50000 5000 -11500 -4000 0 80 ""]
 
 	)
 
-Element["" "TSSOP8W" "U2" "unknown" 60000 17500 -2000 -11500 0 80 ""]
+Element["" "TSSOP8W" "U2" "unknown" 60000 17500 -2000 -11000 0 80 ""]
 (
 	Attribute("device" "ATtiny45")
 	Attribute("manufacturer" "unknown")
@@ -1156,15 +1156,9 @@ Element["hidename" "JUMPER1" "H4" "unknown" 121000 17500 -500 -11500 0 100 ""]
 	)
 Layer(1 "top")
 (
-	Line[4601 20500 2329 18228 1000 2000 "clearline"]
-	Line[3601 5500 2329 6772 1000 2000 "clearline"]
-	Line[7500 10500 2329 10500 1000 2000 "clearline"]
-	Line[7500 14500 2329 14500 1000 2000 "clearline"]
-	Line[12457 13000 12457 20500 1000 2000 "clearline"]
-	Line[12457 20500 4601 20500 1000 2000 "clearline"]
+	Line[7500 10500 2329 10500 2500 2000 "clearline"]
 	Line[30000 20500 30000 16348 800 2000 "clearline"]
 	Line[33500 21500 33500 16348 800 2000 "clearline"]
-	Line[3601 5500 7500 5500 1000 2000 ""]
 	Line[28000 13000 30276 10724 1500 2000 ""]
 	Line[36575 16348 36575 17575 800 2000 "clearline"]
 	Line[36575 17575 38500 19500 800 2000 "clearline"]
@@ -1218,6 +1212,10 @@ Layer(1 "top")
 	Line[198500 20500 200595 18405 1000 2000 "clearline"]
 	Line[200595 18405 204500 18405 1000 2000 "clearline"]
 	Line[196043 5000 204500 5000 1000 2000 "clearline"]
+	Line[2329 6772 7500 6772 2500 2000 ""]
+	Line[2329 14409 7500 14409 2500 2000 "clearline"]
+	Line[2329 18228 12457 18228 2500 2000 "clearline"]
+	Line[12457 18228 12457 12500 2500 2000 "clearline"]
 	Polygon("clearpoly")
 	(
 		[17000 2000] [26500 2000] [26500 15500] [17000 15500] 
@@ -1301,15 +1299,9 @@ Layer(1 "top")
 )
 Layer(2 "bottom")
 (
-	Line[2329 10591 2329 6772 1000 2000 "clearline"]
-	Line[2329 18228 7101 23000 800 2000 "clearline"]
 	Line[7500 14500 14500 21500 800 2000 "clearline"]
 	Line[7500 10500 9000 9000 1000 2000 "clearline"]
 	Line[9000 9000 24500 9000 1000 2000 "clearline"]
-	Line[24500 18500 27500 15500 1500 2000 "clearline"]
-	Line[27500 15500 27500 7500 1500 2000 "clearline"]
-	Line[27500 7500 25500 5500 1500 2000 "clearline"]
-	Line[25500 5500 7500 5500 1500 2000 "clearline"]
 	Line[14500 21500 27000 21500 800 2000 "clearline"]
 	Line[27000 21500 28000 20500 800 2000 "clearline"]
 	Line[28000 20500 30000 20500 800 2000 "clearline"]
@@ -1325,7 +1317,6 @@ Layer(2 "bottom")
 	Line[31500 19000 37500 19000 800 2000 "clearline"]
 	Line[37000 21500 37500 22000 800 2000 "clearline"]
 	Line[37500 19000 39000 20500 800 2000 "clearline"]
-	Line[7101 23000 32000 23000 800 2000 "clearline"]
 	Line[32000 23000 33500 21500 800 2000 "clearline"]
 	Line[33500 21500 37000 21500 800 2000 "clearline,rubberend"]
 	Line[85500 15000 84000 13500 800 2000 "clearline"]
@@ -1368,9 +1359,21 @@ Layer(2 "bottom")
 	Line[135500 12500 114000 12500 2000 2000 "clearline"]
 	Line[94500 22500 196500 22500 1000 2000 "clearline"]
 	Line[196500 22500 198500 20500 1000 2000 "clearline"]
+	Line[7500 5500 26000 5500 2500 2000 "clearline"]
+	Line[26000 5500 28000 7500 2500 2000 "clearline"]
+	Line[28000 7500 28000 15000 2500 2000 "clearline"]
+	Line[28000 15000 24500 18500 2500 2000 "clearline"]
+	Line[2329 18228 5728 18228 2500 2000 "clearline"]
+	Line[5728 18228 8000 20500 2500 2000 "clearline"]
+	Line[32000 23000 10500 23000 800 2000 "clearline"]
+	Line[10500 23000 8000 20500 800 2000 "clearline"]
 	Polygon("clearpoly")
 	(
 		[77000 1500] [115500 1500] [115500 6000] [77000 6000] 
+	)
+	Polygon("clearpoly")
+	(
+		[1000 4000] [5000 4000] [5000 12000] [1000 12000] 
 	)
 )
 Layer(3 "outline")
@@ -1378,6 +1381,12 @@ Layer(3 "outline")
 )
 Layer(4 "silk")
 (
+	Line[125500 9000 125500 5500 800 2000 "clearline"]
+	Text[180500 13000 1 100 "VIN" "clearline,onsolder"]
+	Text[159500 1500 1 100 "GND" "clearline,onsolder"]
+	Text[67500 10500 1 100 "ADJ" "clearline,onsolder"]
+	Text[126000 16000 1 100 "D" "clearline,onsolder"]
+	Text[126000 6000 1 100 "D" "clearline,onsolder"]
 )
 Layer(5 "silk")
 (
