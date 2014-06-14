@@ -6,11 +6,11 @@ FileVersion[20070407]
 PCB["" 210000 25000]
 
 Grid[500.0 0 0 0]
-Cursor[0 0 0.000000]
+Cursor[116000 0 0.000000]
 PolyArea[200000000.000000]
 Thermal[0.500000]
 DRC[600 600 600 800 1300 700]
-Flags("showdrc,nameonpcb,clearnew,snappin")
+Flags("showdrc,nameonpcb,clearnew")
 Groups("1,c:2,s:3")
 Styles["Signal,1000,3000,1400,1000:Power,2500,6000,3500,1000:Fat,4000,6000,3500,1000:Skinny,600,2402,1181,600"]
 
@@ -809,14 +809,14 @@ Via[90500 6000 3000 2000 0 1400 "" ""]
 Via[88000 18000 3000 2000 0 1400 "" ""]
 Via[93000 18000 3000 2000 0 1400 "" ""]
 Via[96500 19000 3000 2000 0 1400 "" ""]
-Via[110000 21500 3000 2000 0 1400 "" ""]
+Via[110000 21500 3000 2000 0 1400 "" "thermal(1S)"]
 Via[110000 13000 3000 2000 0 1400 "" ""]
 Via[106000 13500 3000 2000 0 1400 "" ""]
 Via[114000 13000 3000 2000 0 1400 "" ""]
 Via[102000 6000 3000 2000 0 1400 "" ""]
 Via[131500 12500 3000 2000 0 1400 "" "thermal(0S)"]
 Via[135500 12500 3000 2000 0 1400 "" "thermal(0S)"]
-Via[198500 20500 3000 2000 0 1400 "" ""]
+Via[197500 20500 3000 2000 0 1400 "" ""]
 
 Element["hidename" "JUMPER1" "H5" "unknown" 70500 5500 7500 -3000 0 100 ""]
 (
@@ -855,7 +855,7 @@ Element["" "SOT89" "U1" "unknown" 149000 13000 10000 -10500 0 80 ""]
 
 	)
 
-Element["" "0805" "R3" "1k" 192500 5000 -2150 3350 0 60 ""]
+Element["" "0805" "R3" "1k" 191500 5000 -2150 3350 0 60 ""]
 (
 	Attribute("device" "RESISTOR")
 	Attribute("manufacturer" "unknown")
@@ -869,7 +869,7 @@ Element["" "0805" "R3" "1k" 192500 5000 -2150 3350 0 60 ""]
 
 	)
 
-Element["hidename" "1206" "D2" "unknown" 204500 12500 1350 12850 0 100 ""]
+Element["hidename" "1206" "D2" "unknown" 203500 12500 1350 12850 0 100 ""]
 (
 	Attribute("device" "RED")
 	Attribute("manufacturer" "unknown")
@@ -1160,15 +1160,11 @@ Layer(1 "top")
 	Line[30000 20500 30000 16348 800 2000 "clearline"]
 	Line[33500 21500 33500 16348 800 2000 "clearline"]
 	Line[28000 13000 30276 10724 1500 2000 ""]
-	Line[36575 16348 36575 17575 800 2000 "clearline"]
-	Line[36575 17575 38500 19500 800 2000 "clearline"]
 	Line[48386 13662 43000 13662 800 2000 "clearline"]
 	Line[39724 16348 39724 15276 800 2000 "clearline"]
 	Line[39724 15276 41000 14000 800 2000 "clearline"]
 	Line[41000 14000 43000 14000 800 2000 "clearline"]
 	Line[48386 18779 42721 18779 800 2000 "clearline"]
-	Line[42721 18779 42000 19500 800 2000 "clearline"]
-	Line[42000 19500 38500 19500 800 2000 "clearline"]
 	Line[48386 16221 53221 16221 800 2000 "clearline"]
 	Line[53221 16221 53500 16500 800 2000 "clearline"]
 	Line[71614 16221 64779 16221 800 2000 "clearline"]
@@ -1207,14 +1203,18 @@ Layer(1 "top")
 	Line[102000 6000 105500 2500 2000 2000 "clearline"]
 	Line[105500 2500 127000 2500 2000 2000 "clearline"]
 	Line[127000 2500 132000 7500 2000 2000 ""]
-	Line[198500 20500 200595 18405 1000 2000 "clearline"]
-	Line[200595 18405 204500 18405 1000 2000 "clearline"]
 	Line[196043 5000 204500 5000 1000 2000 "clearline"]
 	Line[2329 6772 7500 6772 2500 2000 ""]
 	Line[2329 14409 7500 14409 2500 2000 "clearline"]
 	Line[2329 18228 12457 18228 2500 2000 "clearline"]
 	Line[12457 18228 12457 12500 2500 2000 "clearline"]
 	Line[180000 5500 161000 5500 2500 2000 ""]
+	Line[36575 16348 36575 18575 800 2000 "clearline"]
+	Line[36575 18575 37500 19500 800 2000 "clearline"]
+	Line[37500 19500 41500 19500 800 2000 "clearline"]
+	Line[41500 19500 43000 18000 800 2000 "clearline"]
+	Line[197500 20500 199000 19000 1000 2000 "clearline"]
+	Line[199000 19000 203000 19000 1000 2000 "clearline"]
 	Polygon("clearpoly")
 	(
 		[17000 2000] [26500 2000] [26500 15500] [17000 15500] 
@@ -1289,7 +1289,7 @@ Layer(1 "top")
 	)
 	Polygon("clearpoly")
 	(
-		[177000 2000] [191500 2000] [191500 8000] [177000 8000] 
+		[177000 2000] [190500 2000] [190500 8000] [177000 8000] 
 	)
 	Polygon("clearpoly")
 	(
@@ -1303,8 +1303,6 @@ Layer(1 "top")
 Layer(2 "bottom")
 (
 	Line[7500 14500 14500 21500 800 2000 "clearline"]
-	Line[7500 10500 9000 9000 1000 2000 "clearline"]
-	Line[9000 9000 24500 9000 1000 2000 "clearline"]
 	Line[14500 21500 27000 21500 800 2000 "clearline"]
 	Line[27000 21500 28000 20500 800 2000 "clearline"]
 	Line[28000 20500 30000 20500 800 2000 "clearline"]
@@ -1360,8 +1358,7 @@ Layer(2 "bottom")
 	Line[76500 6500 78500 4500 2000 2000 ""]
 	Line[95500 6000 102000 6000 2000 2000 "clearline"]
 	Line[135500 12500 114000 12500 2000 2000 "clearline"]
-	Line[94500 22500 196500 22500 1000 2000 "clearline"]
-	Line[196500 22500 198500 20500 1000 2000 "clearline"]
+	Line[94500 22500 195500 22500 1000 2000 ""]
 	Line[7500 5500 26000 5500 2500 2000 "clearline"]
 	Line[26000 5500 28000 7500 2500 2000 "clearline"]
 	Line[28000 7500 28000 15000 2500 2000 "clearline"]
@@ -1370,6 +1367,9 @@ Layer(2 "bottom")
 	Line[5728 18228 8000 20500 2500 2000 "clearline"]
 	Line[32000 23000 10500 23000 800 2000 "clearline"]
 	Line[10500 23000 8000 20500 800 2000 "clearline"]
+	Line[7500 10500 23000 10500 2500 2000 "clearline"]
+	Line[23000 10500 24500 9000 2500 2000 "clearline"]
+	Line[195500 22500 197500 20500 1000 2000 "clearline"]
 	Polygon("clearpoly")
 	(
 		[77000 1500] [115500 1500] [115500 6000] [77000 6000] 
@@ -1378,25 +1378,42 @@ Layer(2 "bottom")
 	(
 		[1000 4000] [5000 4000] [5000 12000] [1000 12000] 
 	)
+	Polygon("clearpoly")
+	(
+		[108000 23000] [112000 23000] [112000 19500] [108000 19500] 
+	)
 )
 Layer(3 "outline")
 (
+	Line[0 0 210000 0 1000 2000 "clearline"]
+	Line[210000 0 210000 25000 1000 2000 "clearline"]
+	Line[210000 25000 0 25000 1000 2000 "clearline"]
+	Line[0 25000 0 0 1000 2000 "clearline"]
 )
 Layer(4 "silk")
 (
 	Line[125500 9000 125500 5500 800 2000 "clearline"]
+	Line[209500 500 209500 24500 1000 2000 "clearline"]
+	Line[209500 24500 500 24500 1000 2000 "clearline"]
+	Line[500 500 209500 500 1000 2000 "clearline"]
 	Text[180500 13000 1 100 "VIN" "clearline,onsolder"]
 	Text[159500 1500 1 100 "GND" "clearline,onsolder"]
 	Text[67500 10500 1 100 "ADJ" "clearline,onsolder"]
 	Text[126000 16000 1 100 "D" "clearline,onsolder"]
 	Text[126000 6000 1 100 "D" "clearline,onsolder"]
+	Text[11000 7000 0 90 "CKT-IRSENSE v3.0" "clearline,onsolder"]
+	Text[45500 23000 0 80 "(C)2014" "clearline,onsolder"]
+	Text[30500 12500 0 80 "CC-BY-SA" "clearline,onsolder"]
+	Text[136500 6500 1 100 "Iowa" "clearline,onsolder"]
+	Text[143000 4000 1 100 "Scaled" "clearline,onsolder"]
+	Text[149500 7500 1 100 "Eng." "clearline,onsolder"]
 )
 Layer(5 "silk")
 (
 	Line[500 500 209500 500 1000 2000 "clearline"]
 	Line[209500 500 209500 24500 1000 2000 "clearline"]
 	Line[209500 24500 500 24500 1000 2000 "clearline"]
-	Text[197500 14000 0 100 "+" "clearline"]
+	Text[197000 14000 0 100 "+" "clearline"]
 )
 NetList()
 (
