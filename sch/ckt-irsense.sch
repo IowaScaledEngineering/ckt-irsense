@@ -169,7 +169,7 @@ value=22uF
 T 46300 47200 5 10 1 1 0 0 1
 footprint=tantalum_a
 T 46100 46800 5 10 1 1 0 0 1
-description=16V, Tantalum
+description=6.3V, Tantalum
 }
 N 46000 47800 46000 48100 4
 N 46000 46900 46000 46600 4
