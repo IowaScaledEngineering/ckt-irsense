@@ -1,5 +1,5 @@
 #*************************************************************************
-#Title:    MRB-AVRTEMPLATE Makefile
+#Title:    CKT-IRSENSE Makefile
 #Authors:  Michael Petersen <railfan@drgw.net>
 #          Nathan Holmes <maverick@drgw.net>
 #File:     MRB-AVRTEMPLATE Makefile
@@ -27,10 +27,10 @@
 BASE_NAME = ckt-irsense
 
 # ATmega85 8MHz internal oscillator
-DEVICE  = attiny45
+DEVICE  = attiny85
 F_CPU   = 8000000
 FUSE_L  = 0xE2
-FUSE_H  = 0xD4
+FUSE_H  = 0xD5
 FUSE_E  = 0xFF
 
 SRCS = $(BASE_NAME).c
