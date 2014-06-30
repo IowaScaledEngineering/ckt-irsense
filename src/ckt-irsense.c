@@ -6,11 +6,11 @@ File:     $Id: $
 License:  GNU General Public License v3
 
 LICENSE:
-    Copyright (C) 2014 Nathan Holmes
+    Copyright (C) 2014 Michael Petersen & Nathan Holmes
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
+    the Free Software Foundation; either version 3 of the License, or
     any later version.
 
     This program is distributed in the hope that it will be useful,
@@ -44,10 +44,10 @@ uint16_t ppulse_table[8] = {113,  196,  273,  340,  393,  434,  486, 535};
 #define   SDA   PB0
 #define   SCL   PB2
 
-#define   SDA_LOW   DDRB |= _BV(SDA); _delay_us(10);
-#define   SDA_HIGH  DDRB &= ~_BV(SDA); _delay_us(10);
-#define   SCL_LOW   PORTB &= ~_BV(SCL); _delay_us(10);
-#define   SCL_HIGH  PORTB |= _BV(SCL); _delay_us(10);
+static inline void sda_low() { DDRB |= _BV(SDA); _delay_us(10); }
+static inline void sda_high() { DDRB &= ~_BV(SDA); _delay_us(10); }
+static inline void scl_low() { PORTB &= ~_BV(SCL); _delay_us(10); }
+static inline void scl_high() { PORTB |= _BV(SCL); _delay_us(10); }
 
 volatile uint8_t ticks;
 volatile uint8_t decisecs = 0;
@@ -75,18 +75,18 @@ ISR(TIMER0_COMPA_vect)
 
 void i2cStart(void)
 {
-	SCL_HIGH;
-	SDA_LOW;
-	SCL_LOW;
-	SDA_HIGH;
+	scl_high();
+	sda_low();
+	scl_low();
+	sda_high();
 }
 
 void i2cStop(void)
 {
-	SCL_LOW;
-	SDA_LOW;
-	SCL_HIGH;
-	SDA_HIGH;
+	scl_low();
+	sda_low();
+	scl_high();
+	sda_high();
 }
 
 uint8_t i2cWriteByte(uint8_t byte)
@@ -97,27 +97,27 @@ uint8_t i2cWriteByte(uint8_t byte)
 	{
 		if(byte & i)
 		{
-			SDA_HIGH;
+			sda_high();
 		}
 		else
 		{
-			SDA_LOW;
+			sda_low();
 		}
 		
-		SCL_HIGH;
-		SCL_LOW;
+		scl_high();
+		scl_low();
 		
 		i >>= 1;
 	} while(i);
-	;
-	SDA_HIGH;  // Release SDA
+
+	sda_high();  // Release SDA
 	
-	SCL_HIGH;
+	scl_high();
 	if(PINB & _BV(SDA))
 		ack = 0;
 	else
 		ack = 1;
-	SCL_LOW;
+	scl_low();
 
 	return ack;
 }
@@ -129,17 +129,17 @@ uint8_t i2cReadByte(uint8_t ack)
 	for(i=0; i<8; i++)
 	{
 		data = data << 1;
-		SCL_HIGH;
+		scl_high();
 		if(PINB & _BV(SDA))
 			data |= 0x01;
-		SCL_LOW;
+		scl_low();
 	}
 	
 	if(ack)
-		SDA_LOW
-	SCL_HIGH;
-	SCL_LOW;
-	SDA_HIGH;
+		sda_low();
+	scl_high();
+	scl_low();
+	sda_high();
 
 	return data;
 }
@@ -186,9 +186,7 @@ void init(void)
 	ADCSRA = 0x87; // ADC enabled, prescaler = 128
 	DIDR0 = _BV(ADC2D);  // Disable ADC2 digital input buffer
 	
-	// Clear watchdog (in the case of an 'X' packet reset)
 	MCUSR = 0;
-	// If you don't want the watchdog to do system reset, remove this chunk of code
 	wdt_reset();
 	wdt_enable(WDTO_250MS);
 	wdt_reset();
