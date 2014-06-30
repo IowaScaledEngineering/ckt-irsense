@@ -27,12 +27,19 @@ LICENSE:
 #include <util/delay.h>
 
 #define   TMD26711_ADDR   0x39
+#define   INFO_ADDR       0x20
 
-#define   ADC_THRESHOLD   0x300
+#define   PROXIMITY_THRESHOLD   0x300
+#define   PPULSE_DEFAULT        8
 
 // Debounce in 100ms increments
 #define   ON_DEBOUNCE     2
 #define   OFF_DEBOUNCE    2
+
+// ADC -> PPULSE Lookup Table
+// Mid-Code Equivalent Standard R Value:
+//                          620, 1.8k, 3.0k, 4.3k, 5.6k, 6.8k, 8.2k, 10k
+uint16_t ppulse_table[8] = {113,  196,  273,  340,  393,  434,  486, 535};
 
 #define   SDA   PB0
 #define   SCL   PB2
@@ -43,7 +50,7 @@ LICENSE:
 #define   SCL_HIGH  PORTB |= _BV(SCL); _delay_us(10);
 
 volatile uint8_t ticks;
-volatile uint16_t decisecs = 0;
+volatile uint8_t decisecs = 0;
 
 void initialize100HzTimer(void)
 {
@@ -174,6 +181,10 @@ uint16_t readWord(uint8_t addr, uint8_t cmd)
 
 void init(void)
 {
+	// Configure ADC
+	ADMUX = 0x02;  // ref = VCC, right-justified, input = PB4 (ADC2)
+	ADCSRA = 0x87; // ADC enabled, prescaler = 128
+	DIDR0 = _BV(ADC2D);  // Disable ADC2 digital input buffer
 	
 	// Clear watchdog (in the case of an 'X' packet reset)
 	MCUSR = 0;
@@ -187,8 +198,11 @@ void init(void)
 
 int main(void)
 {
-	uint16_t adc;
+	uint16_t proximity;
 	uint8_t count = 0, detect = 0;
+	uint8_t i;
+	uint8_t ppulse = PPULSE_DEFAULT;
+	int16_t adc, adc_filt = 0;
 	
 	// Application initialization
 	init();
@@ -196,23 +210,23 @@ int main(void)
 	sei();
 
 	// Initialize TMD26711 (bit 0x80 set to indicate command)
-	writeByte(TMD26711_ADDR, 0x80|0x00, 0x00);  // Start with everything disabled
-	writeByte(TMD26711_ADDR, 0x80|0x01, 0xFF);  // Minimum ATIME
-	writeByte(TMD26711_ADDR, 0x80|0x02, 0xFF);  // Maximum integration time
-	writeByte(TMD26711_ADDR, 0x80|0x03, 0xFF);  // Minimum wait time
+	writeByte(TMD26711_ADDR, 0x80|0x00, 0x00);   // Start with everything disabled
+	writeByte(TMD26711_ADDR, 0x80|0x01, 0xFF);   // Minimum ATIME
+	writeByte(TMD26711_ADDR, 0x80|0x02, 0xFF);   // Maximum integration time
+	writeByte(TMD26711_ADDR, 0x80|0x03, 0xFF);   // Minimum wait time
 	
 	// Note: IRQ not currently used
-	writeByte(TMD26711_ADDR, 0x80|0x08, 0x00);  // Set interrupt low threshold to 0x0000
+	writeByte(TMD26711_ADDR, 0x80|0x08, 0x00);   // Set interrupt low threshold to 0x0000
 	writeByte(TMD26711_ADDR, 0x80|0x09, 0x00);
-	writeByte(TMD26711_ADDR, 0x80|0x0A, 0x00);  // Set interrupt low threshold to 0x0300
+	writeByte(TMD26711_ADDR, 0x80|0x0A, 0x00);   // Set interrupt low threshold to 0x0300
 	writeByte(TMD26711_ADDR, 0x80|0x0B, 0x03);
-	writeByte(TMD26711_ADDR, 0x80|0x0C, 0x10);  // Single out-of-range cycle triggers interrupt
+	writeByte(TMD26711_ADDR, 0x80|0x0C, 0x10);   // Single out-of-range cycle triggers interrupt
 
-	writeByte(TMD26711_ADDR, 0x80|0x0D, 0x00);  // Long wait disabled
-	writeByte(TMD26711_ADDR, 0x80|0x0E, 0x08);  // Pulse count = 8 (default)
-	writeByte(TMD26711_ADDR, 0x80|0x0F, 0x10);  // 100% LED drive strength, Use channel 0 diode
+	writeByte(TMD26711_ADDR, 0x80|0x0D, 0x00);   // Long wait disabled
+	writeByte(TMD26711_ADDR, 0x80|0x0E, ppulse); // Pulse count
+	writeByte(TMD26711_ADDR, 0x80|0x0F, 0x10);   // 100% LED drive strength, Use channel 0 diode
 
-	writeByte(TMD26711_ADDR, 0x80|0x00, 0x27);  // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
+	writeByte(TMD26711_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
 
 	while (1)
 	{
@@ -222,9 +236,30 @@ int main(void)
 		{
 			decisecs = 0;
 
-			adc = readWord(TMD26711_ADDR, 0x80|0x20|0x18);  // Read data register (0x80 = command, 0x20 = auto-increment)
-	
-			if(!detect & (adc >= ADC_THRESHOLD))
+			// Read ADC
+			ADCSRA |= _BV(ADSC);  // Tigger conversion
+			while(ADCSRA & _BV(ADSC));
+			adc = ADC;
+			adc_filt = adc_filt + ((adc - adc_filt) / 4);
+			
+			ppulse = PPULSE_DEFAULT;
+			for(i=0; i<8; i++)
+			{
+				if(adc_filt < ppulse_table[i])
+				{
+					ppulse = 4 * (i+1);
+					break;
+				}	
+			}
+
+			writeByte(TMD26711_ADDR, 0x80|0x0E, ppulse);
+
+			// Telemetry
+			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
+
+			proximity = readWord(TMD26711_ADDR, 0x80|0x20|0x18);  // Read data register (0x80 = command, 0x20 = auto-increment)
+
+			if(!detect & (proximity >= PROXIMITY_THRESHOLD))
 			{
 				// ON debounce
 				count++;
@@ -234,12 +269,12 @@ int main(void)
 					count = 0;
 				}
 			}
-			else if(!detect & (adc < ADC_THRESHOLD))
+			else if(!detect & (proximity < PROXIMITY_THRESHOLD))
 			{
 				count = 0;
 			}
 
-			else if(detect & (adc < ADC_THRESHOLD))
+			else if(detect & (proximity < PROXIMITY_THRESHOLD))
 			{
 				// OFF debounce
 				count++;
@@ -249,7 +284,7 @@ int main(void)
 					count = 0;
 				}
 			}
-			else if(detect & (adc >= ADC_THRESHOLD))
+			else if(detect & (proximity >= PROXIMITY_THRESHOLD))
 			{
 				count = 0;
 			}
