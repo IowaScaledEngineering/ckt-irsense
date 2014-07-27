@@ -32,14 +32,7 @@ LICENSE:
 #define   PROXIMITY_THRESHOLD   0x300
 #define   PPULSE_DEFAULT        8
 
-// Debounce in 100ms increments
-#define   ON_DEBOUNCE     2
-#define   OFF_DEBOUNCE    2
-
-// ADC -> PPULSE Lookup Table
-// Mid-Code Equivalent Standard R Value:
-//                          620, 1.8k, 3.0k, 4.3k, 5.6k, 6.8k, 8.2k, 10k
-uint16_t ppulse_table[8] = {113,  196,  273,  340,  393,  434,  486, 535};
+#define   ON_DEBOUNCE_DEFAULT   1
 
 #define   SDA   PB0
 #define   SCL   PB2
@@ -198,9 +191,9 @@ int main(void)
 {
 	uint16_t proximity;
 	uint8_t count = 0, detect = 0;
-	uint8_t i;
-	uint8_t ppulse = PPULSE_DEFAULT;
+	uint8_t ppulse;
 	int16_t adc, adc_filt = 0;
+	int16_t on_debounce, off_debounce;  // Signed so the math for off_debounce doesn't wrap
 	
 	// Application initialization
 	init();
@@ -221,7 +214,7 @@ int main(void)
 	writeByte(TMD26711_ADDR, 0x80|0x0C, 0x10);   // Single out-of-range cycle triggers interrupt
 
 	writeByte(TMD26711_ADDR, 0x80|0x0D, 0x00);   // Long wait disabled
-	writeByte(TMD26711_ADDR, 0x80|0x0E, ppulse); // Pulse count
+	writeByte(TMD26711_ADDR, 0x80|0x0E, PPULSE_DEFAULT); // Pulse count
 	writeByte(TMD26711_ADDR, 0x80|0x0F, 0x10);   // 100% LED drive strength, Use channel 0 diode
 
 	writeByte(TMD26711_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
@@ -234,24 +227,20 @@ int main(void)
 		{
 			decisecs = 0;
 
+			ppulse = PPULSE_DEFAULT;
+			writeByte(TMD26711_ADDR, 0x80|0x0E, ppulse);
+
 			// Read ADC
-			ADCSRA |= _BV(ADSC);  // Tigger conversion
+			ADCSRA |= _BV(ADSC);  // Trigger conversion
 			while(ADCSRA & _BV(ADSC));
 			adc = ADC;
 			adc_filt = adc_filt + ((adc - adc_filt) / 4);
+
+			on_debounce = ON_DEBOUNCE_DEFAULT;
+			off_debounce = ((1023 - adc_filt) - 100 + 2) / 4;  // Invert, shift, divide-by-4, round
+			if(off_debounce < 1)
+				off_debounce = 1;  // Limit to 1
 			
-			ppulse = PPULSE_DEFAULT;
-			for(i=0; i<8; i++)
-			{
-				if(adc_filt < ppulse_table[i])
-				{
-					ppulse = 4 * (i+1);
-					break;
-				}	
-			}
-
-			writeByte(TMD26711_ADDR, 0x80|0x0E, ppulse);
-
 			// Telemetry
 			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
 
@@ -261,7 +250,7 @@ int main(void)
 			{
 				// ON debounce
 				count++;
-				if(count > ON_DEBOUNCE)
+				if(count > on_debounce)
 				{
 					detect = 1;
 					count = 0;
@@ -276,7 +265,7 @@ int main(void)
 			{
 				// OFF debounce
 				count++;
-				if(count > OFF_DEBOUNCE)
+				if(count > off_debounce)
 				{
 					detect = 0;
 					count = 0;
@@ -300,6 +289,4 @@ int main(void)
 		}
 	}
 }
-
-
 
