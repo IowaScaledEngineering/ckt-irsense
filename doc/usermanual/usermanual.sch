@@ -1,0 +1,41 @@
+v 20130925 2
+C 27600 59400 1 90 0 resistor-1.sym
+{
+T 27200 59700 5 10 0 0 90 0 1
+device=RESISTOR
+}
+C 33100 60100 1 90 0 resistor-1.sym
+{
+T 32700 60400 5 10 0 0 90 0 1
+device=RESISTOR
+}
+C 32800 59200 1 270 1 led-3.sym
+{
+T 33450 60150 5 10 0 0 90 2 1
+device=LED
+}
+C 32800 61000 1 0 0 vdd-1.sym
+N 27200 59200 27800 59200 4
+N 27500 59200 27500 59400 4
+C 26600 59100 1 0 0 in-1.sym
+{
+T 26600 59400 5 10 0 0 0 0 1
+device=INPUT
+T 26500 59200 5 10 1 1 0 7 1
+refdes=IRSENSE Output
+}
+C 27800 59100 1 0 0 out-1.sym
+{
+T 27800 59400 5 10 0 0 0 0 1
+device=OUTPUT
+T 28500 59200 5 10 1 1 0 1 1
+refdes=Logic Level Output
+}
+C 27300 60300 1 0 0 5V-plus-1.sym
+C 32400 59100 1 0 0 in-1.sym
+{
+T 32400 59400 5 10 0 0 0 0 1
+device=INPUT
+T 32300 59200 5 10 1 1 0 7 1
+refdes=IRSENSE Output
+}
