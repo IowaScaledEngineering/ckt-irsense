@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568544"
-     inkscape:cx="64.535652"
-     inkscape:cy="74.296849"
+     inkscape:zoom="2.0000001"
+     inkscape:cx="39.906636"
+     inkscape:cy="186.46766"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -166,7 +166,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <path
-       style="fill:#808080;fill-opacity:1;stroke:none"
+       style="fill:#b3b3b3;fill-opacity:1;stroke:none"
        d="m 18,726.1098 11.25,-11.25 76.5,0 11.25,11.25 z"
        id="path3859"
        inkscape:connector-curvature="0" />
@@ -245,7 +245,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <path
-       style="fill:#808080;fill-opacity:1;stroke:none"
+       style="fill:#b3b3b3;fill-opacity:1;stroke:none"
        d="m 18,849.8598 11.25,-11.25 76.5,0 11.25,11.25 z"
        id="path3859-6"
        inkscape:connector-curvature="0" />
@@ -331,7 +331,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <path
-       style="fill:#808080;fill-opacity:1;stroke:none"
+       style="fill:#b3b3b3;fill-opacity:1;stroke:none"
        d="m 18.000001,973.60982 11.25,-11.25 76.499999,0 11.25,11.25 z"
        id="path3859-6-6"
        inkscape:connector-curvature="0" />
@@ -356,6 +356,13 @@
        height="78.466522"
        x="50.625"
        y="967.14331" />
+    <rect
+       style="color:#000000;fill:#aa4400;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.89999998000000003;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3818"
+       width="76.5"
+       height="4.7834787"
+       x="29.249969"
+       y="962.3598" />
     <g
        id="g2987"
        transform="matrix(0,1,-1,0,1097.3598,950.22328)">
@@ -381,5 +388,19 @@
          id="rect3786"
          style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.89999998;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </g>
+    <rect
+       style="color:#000000;fill:#aa4400;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.89999998000000003;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3818-6"
+       width="76.5"
+       height="4.7834787"
+       x="29.25"
+       y="838.6098" />
+    <rect
+       style="color:#000000;fill:#aa4400;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.89999998000000003;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3818-5"
+       width="76.5"
+       height="4.7834787"
+       x="29.25"
+       y="714.8598" />
   </g>
 </svg>
