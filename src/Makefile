@@ -34,6 +34,7 @@ FUSE_H  = 0xD5
 FUSE_E  = 0xFF
 
 SRCS = $(BASE_NAME).c
+INCS = 
 
 AVRDUDE = avrdude -c usbtiny -P usb -p $(DEVICE) -B1
 AVRDUDE_SLOW = avrdude -c usbtiny -P usb -p $(DEVICE) -B32
@@ -125,7 +126,6 @@ release: hex
 	@$(eval TMPDIR := $(BTMPDIR)/$(BASE_NAME))
 	@$(eval BOILERPLATE_FILES := $(shell find ../../docs/release-boilerplate -type f -name *.txt -print))
 	@$(eval RELEASE_TIME := $(shell date +"%d%b%Y-%H%Mh"))
-	@mkdir -p $(TMPDIR)/mrbus/src
 	@mkdir -p $(TMPDIR)/$(BASE_NAME)/src
 	@echo "  [done]"
 
@@ -141,12 +141,12 @@ release: hex
 	@echo "  [done]"
 
 	@echo -n "Copying source files..."
-	@tar cPf - $(INCS) | tar xPf - -C $(TMPDIR)/$(BASE_NAME)/src/
-	@echo "  [done]"
-
-	@echo -n "Copying include files..."
 	@tar cPf - $(SRCS) | tar xPf - -C $(TMPDIR)/$(BASE_NAME)/src/
 	@echo "  [done]"
+
+#	@echo -n "Copying include files..."
+#	@tar cPf - $(INCS) | tar xPf - -C $(TMPDIR)/$(BASE_NAME)/src/
+#	@echo "  [done]"
 
 	@echo -n "Writing file SVN statuses..."
 	@echo "### Archive built at $(RELEASE_TIME)" > $(TMPDIR)/$(BASE_NAME)/src/FILE_SVN_VERSIONS
