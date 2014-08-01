@@ -174,15 +174,16 @@ uint16_t readWord(uint8_t addr, uint8_t cmd)
 
 void init(void)
 {
+	MCUSR = 0;
+	wdt_reset();
+	wdt_enable(WDTO_250MS);
+	wdt_reset();
+
 	// Configure ADC
 	ADMUX = 0x02;  // ref = VCC, right-justified, input = PB4 (ADC2)
 	ADCSRA = 0x87; // ADC enabled, prescaler = 128
 	DIDR0 = _BV(ADC2D);  // Disable ADC2 digital input buffer
 	
-	MCUSR = 0;
-	wdt_reset();
-	wdt_enable(WDTO_250MS);
-	wdt_reset();
 	PORTB = _BV(SCL) | _BV(PB1);  // All outputs low except SCL and PB1
 	DDRB |= _BV(PB1) | _BV(SCL) | _BV(PB3);
 }

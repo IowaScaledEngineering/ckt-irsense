@@ -30,7 +30,7 @@ BASE_NAME = ckt-irsense
 DEVICE  = attiny45
 F_CPU   = 8000000
 FUSE_L  = 0xE2
-FUSE_H  = 0xD5
+FUSE_H  = 0xC5
 FUSE_E  = 0xFF
 
 SRCS = $(BASE_NAME).c
