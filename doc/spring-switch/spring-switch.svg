@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="168.83449"
-     inkscape:cy="72.09551"
+     inkscape:zoom="2.8284272"
+     inkscape:cx="126.16421"
+     inkscape:cy="130.36606"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -373,28 +373,28 @@
     <rect
        style="color:#000000;fill:#c87137;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.89999998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3859"
-       width="11.667261"
-       height="33.234016"
-       x="101.16637"
-       y="904.30975"
-       rx="4.5"
-       ry="4.5" />
+       width="8.5172672"
+       height="21.934017"
+       x="102.74136"
+       y="911.34277"
+       rx="3.285064"
+       ry="2.9699411" />
     <text
        xml:space="preserve"
        style="font-size:48px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="94.589417"
-       y="918.19727"
+       x="68.079651"
+       y="919.58026"
        id="text3073-9-55-7"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3075-0-8-2"
-         x="94.589417"
-         y="918.19727"
-         style="font-size:10px;text-align:end;text-anchor:end">Delay Adjust</tspan><tspan
+         x="68.079651"
+         y="919.58026"
+         style="font-size:10px;text-align:center;text-anchor:middle">Delay Adjust</tspan><tspan
          sodipodi:role="line"
-         x="94.589417"
-         y="930.69727"
-         style="font-size:10px;text-align:end;text-anchor:end"
+         x="68.079651"
+         y="932.08026"
+         style="font-size:10px;text-align:center;text-anchor:middle"
          id="tspan3896">Resistor</tspan></text>
     <path
        inkscape:connector-curvature="0"
