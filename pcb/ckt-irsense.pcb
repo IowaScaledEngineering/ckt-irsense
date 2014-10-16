@@ -1140,14 +1140,14 @@ Element["hidename" "IRSENSE-CONNECT-2SIDE" "U3" "unknown" -663 12500 7663 -7500 
 	Attribute("manufacturer_part_number" "unknown")
 	Attribute("vendor" "unknown")
 	Attribute("vendor_part_number" "unknown")
-	Pad[2992 7500 4000 7500 2835 0 3435 "VDD" "1" "square,nopaste"]
-	Pad[2992 2500 4000 2500 2835 0 3435 "SCL" "2" "square,nopaste"]
-	Pad[2992 -2500 4000 -2500 2835 0 3435 "GND" "3" "square,nopaste"]
-	Pad[2992 -7500 4000 -7500 2835 0 3435 "LEDA" "4" "square,nopaste"]
-	Pad[2992 -7500 4000 -7500 2835 0 3435 "LEDK" "5" "onsolder,square,nopaste"]
-	Pad[2992 -2500 4000 -2500 2835 0 3435 "LDR" "6" "onsolder,square,nopaste"]
-	Pad[2992 2500 4000 2500 2835 0 3435 "INT" "7" "onsolder,square,nopaste"]
-	Pad[2992 7500 4000 7500 2835 0 3435 "SDA" "8" "onsolder,square,nopaste"]
+	Pad[2082 7500 4000 7500 2835 0 3435 "VDD" "1" "square,nopaste"]
+	Pad[2082 2500 4000 2500 2835 0 3435 "SCL" "2" "square,nopaste"]
+	Pad[2082 -2500 4000 -2500 2835 0 3435 "GND" "3" "square,nopaste"]
+	Pad[2082 -7500 4000 -7500 2835 0 3435 "LEDA" "4" "square,nopaste"]
+	Pad[2082 -7500 4000 -7500 2835 0 3435 "LEDK" "5" "onsolder,square,nopaste"]
+	Pad[2082 -2500 4000 -2500 2835 0 3435 "LDR" "6" "onsolder,square,nopaste"]
+	Pad[2082 2500 4000 2500 2835 0 3435 "INT" "7" "onsolder,square,nopaste"]
+	Pad[2082 7500 4000 7500 2835 0 3435 "SDA" "8" "onsolder,square,nopaste"]
 	ElementArc [8000 9768 500 500 180 360 1000]
 
 	)
