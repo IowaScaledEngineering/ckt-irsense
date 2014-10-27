@@ -191,7 +191,8 @@ void init(void)
 int main(void)
 {
 	uint16_t proximity;
-	uint8_t count = 0, detect = 0;
+	uint8_t detect = 0;
+	uint16_t count = 0;  // 256 decisecs * 60 (long delay mode) = 15360 max count
 	uint8_t ppulse;
 	int16_t adc, adc_filt = 0;
 	int16_t on_debounce, off_debounce;  // Signed so the math for off_debounce doesn't wrap
@@ -241,7 +242,9 @@ int main(void)
 			off_debounce = ((1023 - adc_filt) - 100 + 2) / 4;  // Invert, shift, divide-by-4, round
 			if(off_debounce < 1)
 				off_debounce = 1;  // Limit to 1
-			
+#ifdef LONG_DELAY
+			off_debounce *= 60;
+#endif
 			// Telemetry
 			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
 
