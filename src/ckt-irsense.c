@@ -217,7 +217,7 @@ int main(void)
 
 	writeByte(TMD26711_ADDR, 0x80|0x0D, 0x00);   // Long wait disabled
 	writeByte(TMD26711_ADDR, 0x80|0x0E, PPULSE_DEFAULT); // Pulse count
-	writeByte(TMD26711_ADDR, 0x80|0x0F, 0x10);   // 100% LED drive strength, Use channel 0 diode
+	writeByte(TMD26711_ADDR, 0x80|0x0F, 0x20);   // 100% LED drive strength, Use channel 1 diode (ch 1 seems less sensitive to fluorescent light)
 
 	writeByte(TMD26711_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
 
