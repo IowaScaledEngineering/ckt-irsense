@@ -54,7 +54,8 @@ COMPILE = avr-gcc $(DEFINES) -DF_CPU=$(F_CPU) $(OPTS) $(CFLAGS) $(LDFLAGS) -mmcu
 help:
 	@echo "make hex ....... build $(BASE_NAME).hex"
 	@echo "make flash ..... flash the firmware"
-	@echo "make production ..... flash the production firmware"
+	@echo "make prod ...... flash the production firmware"
+	@echo "make prodlong .. flash the production firmware (long delay)"
 	@echo "make fuse ...... flash the fuses"
 	@echo "make program ... flash fuses and firmware"
 	@echo "make read ...... read the fuses"
@@ -86,8 +87,11 @@ size:
 flash: $(BASE_NAME).hex
 	$(AVRDUDE) -U flash:w:$(BASE_NAME).hex:i
 
-production:
+prod:
 	$(AVRDUDE) -U flash:w:hex/$(BASE_NAME).hex:i
+
+prodlong:
+	$(AVRDUDE) -U flash:w:hex/$(BASE_NAME)-long.hex:i
 
 # rule for deleting dependent files (those which can be built by Make):
 clean:
