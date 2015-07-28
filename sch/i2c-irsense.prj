@@ -1,0 +1,8 @@
+schematics i2c-irsense.sch
+output-name ../pcb/i2c-irsense
+skip-m4
+elements-dir ../../ise-footprints
+elements-dir ../pcb
+
+
+
