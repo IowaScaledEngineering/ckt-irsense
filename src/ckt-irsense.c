@@ -1,12 +1,12 @@
 /*************************************************************************
-Title:    IR reflective sensor v3.1
+Title:    CKT-IRSENSE - Station Stop Feature
 Authors:  Michael Petersen <railfan@drgw.net>
           Nathan D. Holmes <maverick@drgw.net>
 File:     $Id: $
 License:  GNU General Public License v3
 
 LICENSE:
-    Copyright (C) 2014 Michael Petersen & Nathan Holmes
+    Copyright (C) 2015 Michael Petersen & Nathan Holmes
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,11 @@ LICENSE:
     GNU General Public License for more details.
 
 *************************************************************************/
+
+// When triggered, D goes low (stop train)
+// 5 seconds later, /D goes low (triggers audio)
+// Adjustable delay later, D goes high (starts train)
+// Once no longer triggered, /D goes high
 
 #include <stdlib.h>
 #include <avr/io.h>
@@ -33,9 +38,19 @@ LICENSE:
 #define   PPULSE_DEFAULT        8
 
 #define   ON_DEBOUNCE_DEFAULT   1
+#define   OFF_DEBOUNCE_DEFAULT  1
 
 #define   SDA   PB0
 #define   SCL   PB2
+
+typedef enum {
+	STATE_IDLE,
+	STATE_WAIT,
+	STATE_DELAY,
+	STATE_RESET,
+} StateMachine;
+
+uint16_t timer = 0;
 
 static inline void sda_low() { DDRB |= _BV(SDA); _delay_us(10); }
 static inline void sda_high() { DDRB &= ~_BV(SDA); _delay_us(10); }
@@ -63,6 +78,8 @@ ISR(TIMER0_COMPA_vect)
 	{
 		ticks = 0;
 		decisecs++;
+		if(timer)
+			timer--;
 	}
 }
 
@@ -195,7 +212,8 @@ int main(void)
 	uint16_t count = 0;  // 256 decisecs * 60 (long delay mode) = 15360 max count
 	uint8_t ppulse;
 	int16_t adc, adc_filt = 0;
-	int16_t on_debounce, off_debounce;  // Signed so the math for off_debounce doesn't wrap
+	int16_t on_debounce, off_debounce, delay = 0;  // Signed so the math for delay doesn't wrap
+	StateMachine state = STATE_IDLE;
 	
 	// Application initialization
 	init();
@@ -225,6 +243,7 @@ int main(void)
 	{
 		wdt_reset();
 
+		// Detection State Machine
 		if(decisecs >= 1)
 		{
 			decisecs = 0;
@@ -239,12 +258,12 @@ int main(void)
 			adc_filt = adc_filt + ((adc - adc_filt) / 4);
 
 			on_debounce = ON_DEBOUNCE_DEFAULT;
-			off_debounce = ((1023 - adc_filt) - 100 + 2) / 4;  // Invert, shift, divide-by-4, round
-			if(off_debounce < 1)
-				off_debounce = 1;  // Limit to 1
-#ifdef LONG_DELAY
-			off_debounce *= 60;
-#endif
+			off_debounce = OFF_DEBOUNCE_DEFAULT;
+
+			delay = ((1023 - adc_filt) - 100 + 2) / 4;  // Invert, shift, divide-by-4, round
+			if(delay < 1)
+				delay = 1;  // Limit to 1
+			
 			// Telemetry
 			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
 
@@ -281,15 +300,44 @@ int main(void)
 			}
 		}
 
-		if(detect)
+		// Output Driver State Machine
+		switch(state)
 		{
-			PORTB |= _BV(PB3);
-			PORTB &= ~_BV(PB1);
-		}
-		else
-		{
-			PORTB &= ~_BV(PB3);
-			PORTB |= _BV(PB1);
+			case STATE_IDLE:
+				if(1 == detect)
+				{
+					PORTB |= _BV(PB1);
+					timer = 50;  // 5 second wait
+					state = STATE_WAIT;
+				}
+				else
+				{
+					PORTB &= ~_BV(PB1);
+					PORTB &= ~_BV(PB3);
+				}
+				break;
+			case STATE_WAIT:
+				if(!timer)
+				{
+					PORTB |= _BV(PB3);
+					timer = delay;
+					state = STATE_DELAY;
+				}
+				break;
+			case STATE_DELAY:
+				if(!timer)
+				{
+					PORTB &= ~_BV(PB1);
+					state = STATE_RESET;
+				}
+				break;
+			case STATE_RESET:
+				if(0 == detect)
+				{
+					PORTB &= ~_BV(PB3);
+					state = STATE_IDLE;
+				}
+				break;
 		}
 	}
 }
