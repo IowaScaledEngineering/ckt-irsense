@@ -30,6 +30,7 @@ LICENSE:
 #include <avr/interrupt.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
+#include <util/atomic.h>
 
 #define   TMD26711_ADDR   0x39
 #define   INFO_ADDR       0x20
@@ -50,7 +51,7 @@ typedef enum {
 	STATE_RESET,
 } StateMachine;
 
-uint16_t timer = 0;
+volatile uint16_t timer = 0;
 
 static inline void sda_low() { DDRB |= _BV(SDA); _delay_us(10); }
 static inline void sda_high() { DDRB &= ~_BV(SDA); _delay_us(10); }
@@ -189,6 +190,26 @@ uint16_t readWord(uint8_t addr, uint8_t cmd)
 	return data;
 }
 
+inline void D_high(void)
+{
+	PORTB &= ~_BV(PB1);
+}
+
+inline void D_Low(void)
+{
+	PORTB |= _BV(PB1);
+}
+
+inline void DB_high(void)
+{
+	PORTB &= ~_BV(PB3);
+}
+
+inline void DB_Low(void)
+{
+	PORTB |= _BV(PB3);
+}
+
 void init(void)
 {
 	MCUSR = 0;
@@ -300,45 +321,58 @@ int main(void)
 			}
 		}
 
+		uint16_t timer_temp;
+		ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+		{
+			timer_temp = timer;
+		}
+
 		// Output Driver State Machine
 		switch(state)
 		{
 			case STATE_IDLE:
 				if(1 == detect)
 				{
-					PORTB |= _BV(PB1);
-					timer = 50;  // 5 second wait
+					D_Low();
+					ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+					{
+						timer = 50;  // 5 second wait
+					}
 					state = STATE_WAIT;
 				}
 				else
 				{
-					PORTB &= ~_BV(PB1);
-					PORTB &= ~_BV(PB3);
+					D_high();
+					DB_high();
 				}
 				break;
 			case STATE_WAIT:
-				if(!timer)
+				if(!timer_temp)
 				{
-					PORTB |= _BV(PB3);
-					timer = delay;
+					DB_Low();
+					ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+					{
+						timer = delay;
+					}
 					state = STATE_DELAY;
 				}
 				break;
 			case STATE_DELAY:
-				if(!timer)
+				if(!timer_temp)
 				{
-					PORTB &= ~_BV(PB1);
+					D_high();
 					state = STATE_RESET;
 				}
 				break;
 			case STATE_RESET:
 				if(0 == detect)
 				{
-					PORTB &= ~_BV(PB3);
+					DB_high();
 					state = STATE_IDLE;
 				}
 				break;
 		}
 	}
 }
+
 
