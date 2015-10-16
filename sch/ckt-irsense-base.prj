@@ -1,0 +1,6 @@
+schematics ckt-irsense-base.sch
+output-name ../pcb/ckt-irsense-base
+skip-m4
+elements-dir ../../ise-footprints
+
+
