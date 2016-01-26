@@ -82,11 +82,11 @@ C 52000 47500 1 0 0 gnd-1.sym
 C 51500 46800 1 0 1 header4-1.sym
 {
 T 51400 46450 5 10 1 1 0 6 1
-device=Molex 90584-xx04
+device=Pads for flatwire
 T 51100 48500 5 10 1 1 0 6 1
 refdes=J1
 T 51500 46800 5 10 0 0 0 0 1
-footprint=MOLEX-90584-xx04
+footprint=FLAT4WIRE
 }
 N 52500 46000 52500 48200 4
 N 52100 47800 51500 47800 4
