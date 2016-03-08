@@ -152,24 +152,25 @@ uint8_t writeByte(uint8_t addr, uint8_t cmd, uint16_t writeVal)
 	return ack;
 }
 
-uint16_t readWord(uint8_t addr, uint8_t cmd)
+uint8_t readWord(uint8_t addr, uint8_t cmd, uint16_t* data)
 {
-	uint16_t data;
+	uint8_t ack = 1;
+	*data = 0xFFFF;
 	
 	i2cStart();
 	
-	i2cWriteByte(addr << 1);
-	i2cWriteByte(cmd);
+	ack &= i2cWriteByte(addr << 1);
+	ack &= i2cWriteByte(cmd);
 
 	i2cStart();
 
-	i2cWriteByte((addr << 1) | 0x01);
-	data = i2cReadByte(1);
-	data |= ((uint16_t)i2cReadByte(0) << 8);
+	ack &= i2cWriteByte((addr << 1) | 0x01);
+	*data = i2cReadByte(1);
+	*data |= ((uint16_t)i2cReadByte(0) << 8);
 	
 	i2cStop();
 
-	return data;
+	return ack;
 }
 
 void init(void)
@@ -188,20 +189,8 @@ void init(void)
 	DDRB |= _BV(PB1) | _BV(SCL) | _BV(PB3);
 }
 
-int main(void)
+void initializeTMD26711()
 {
-	uint16_t proximity;
-	uint8_t detect = 0;
-	uint16_t count = 0;  // 256 decisecs * 60 (long delay mode) = 15360 max count
-	uint8_t ppulse;
-	int16_t adc, adc_filt = 0;
-	int16_t on_debounce, off_debounce;  // Signed so the math for off_debounce doesn't wrap
-	
-	// Application initialization
-	init();
-	initialize100HzTimer();
-	sei();
-
 	// Initialize TMD26711 (bit 0x80 set to indicate command)
 	writeByte(TMD26711_ADDR, 0x80|0x00, 0x00);   // Start with everything disabled
 	writeByte(TMD26711_ADDR, 0x80|0x01, 0xFF);   // Minimum ATIME
@@ -220,6 +209,25 @@ int main(void)
 	writeByte(TMD26711_ADDR, 0x80|0x0F, 0x20);   // 100% LED drive strength, Use channel 1 diode (ch 1 seems less sensitive to fluorescent light)
 
 	writeByte(TMD26711_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
+}
+
+
+int main(void)
+{
+	uint16_t proximity;
+	uint8_t detect = 0, sensorError = 1;
+	uint16_t count = 0;  // 256 decisecs * 60 (long delay mode) = 15360 max count
+	uint8_t ppulse;
+	uint8_t ack;
+	int16_t adc, adc_filt = 0;
+	int16_t on_debounce, off_debounce;  // Signed so the math for off_debounce doesn't wrap
+	
+	// Application initialization
+	init();
+	initialize100HzTimer();
+	sei();
+
+	initializeTMD26711();
 
 	while (1)
 	{
@@ -248,7 +256,23 @@ int main(void)
 			// Telemetry
 			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
 
-			proximity = readWord(TMD26711_ADDR, 0x80|0x20|0x18);  // Read data register (0x80 = command, 0x20 = auto-increment)
+			if (sensorError)
+			{
+				initializeTMD26711();
+			}	
+
+			ack = readWord(TMD26711_ADDR, 0x80|0x20|0x18, &proximity);  // Read data register (0x80 = command, 0x20 = auto-increment)
+
+			if (!ack)
+			{
+				// Sensor's gone wonky, reset it and try again
+				detect = 0;
+				proximity = 0;
+				sensorError = 1;
+				continue;
+			} else {
+				sensorError = 0;
+			}
 
 			if(!detect & (proximity >= PROXIMITY_THRESHOLD))
 			{
