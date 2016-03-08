@@ -29,8 +29,9 @@ LICENSE:
 #define   TMD26711_ADDR   0x39
 #define   INFO_ADDR       0x20
 
-#define   PROXIMITY_THRESHOLD   0x300
-#define   PPULSE_DEFAULT        8
+#define   PROXIMITY_THRESHOLD     0x300
+#define   SENSOR_ERROR_THRESHOLD  4
+#define   PPULSE_DEFAULT          8
 
 #define   ON_DEBOUNCE_DEFAULT   1
 
@@ -211,11 +212,24 @@ void initializeTMD26711()
 	writeByte(TMD26711_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
 }
 
+void setOutputs(uint8_t detect)
+{
+	if(detect)
+	{
+		PORTB |= _BV(PB3);
+		PORTB &= ~_BV(PB1);
+	}
+	else
+	{
+		PORTB &= ~_BV(PB3);
+		PORTB |= _BV(PB1);
+	}
+}
 
 int main(void)
 {
 	uint16_t proximity;
-	uint8_t detect = 0, sensorError = 1;
+	uint8_t detect = 0, sensorError = 0;
 	uint16_t count = 0;  // 256 decisecs * 60 (long delay mode) = 15360 max count
 	uint8_t ppulse;
 	uint8_t ack;
@@ -266,10 +280,19 @@ int main(void)
 			if (!ack)
 			{
 				// Sensor's gone wonky, reset it and try again
-				detect = 0;
-				proximity = 0;
-				sensorError = 1;
+				if (sensorError < 255)
+					sensorError++;
+
+				if (sensorError > SENSOR_ERROR_THRESHOLD)
+				{
+					detect = 0;
+					proximity = 0;
+					count = 0;
+					setOutputs(detect);
+				}
+
 				continue;
+
 			} else {
 				sensorError = 0;
 			}
@@ -305,16 +328,7 @@ int main(void)
 			}
 		}
 
-		if(detect)
-		{
-			PORTB |= _BV(PB3);
-			PORTB &= ~_BV(PB1);
-		}
-		else
-		{
-			PORTB &= ~_BV(PB3);
-			PORTB |= _BV(PB1);
-		}
+		setOutputs(detect);
 	}
 }
 
