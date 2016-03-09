@@ -30,7 +30,7 @@ LICENSE:
 #define   INFO_ADDR       0x20
 
 #define   PROXIMITY_THRESHOLD     0x300
-#define   SENSOR_ERROR_THRESHOLD  4
+#define   SENSOR_ERROR_THRESHOLD  0
 #define   PPULSE_DEFAULT          8
 
 #define   ON_DEBOUNCE_DEFAULT   1
