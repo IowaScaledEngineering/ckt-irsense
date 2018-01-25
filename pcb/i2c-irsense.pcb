@@ -803,14 +803,14 @@ Element["hidename" "IRSENSE-CONNECT-2SIDE" "U1" "unknown" -6.63mil 125.00mil 76.
 	Attribute("manufacturer_part_number" "unknown")
 	Attribute("vendor" "unknown")
 	Attribute("vendor_part_number" "unknown")
-	Pad[20.82mil 75.00mil 40.00mil 75.00mil 28.35mil 0.0000 34.35mil "VDD" "1" "square,nopaste"]
-	Pad[20.82mil 25.00mil 40.00mil 25.00mil 28.35mil 0.0000 34.35mil "SCL" "2" "square,nopaste"]
-	Pad[20.82mil -25.00mil 40.00mil -25.00mil 28.35mil 0.0000 34.35mil "GND" "3" "square,nopaste"]
-	Pad[20.82mil -75.00mil 40.00mil -75.00mil 28.35mil 0.0000 34.35mil "LEDA" "4" "square,nopaste"]
-	Pad[20.82mil -75.00mil 40.00mil -75.00mil 28.35mil 0.0000 34.35mil "LEDK" "5" "onsolder,square,nopaste"]
-	Pad[20.82mil -25.00mil 40.00mil -25.00mil 28.35mil 0.0000 34.35mil "LDR" "6" "onsolder,square,nopaste"]
-	Pad[20.82mil 25.00mil 40.00mil 25.00mil 28.35mil 0.0000 34.35mil "INT" "7" "onsolder,square,nopaste"]
-	Pad[20.82mil 75.00mil 40.00mil 75.00mil 28.35mil 0.0000 34.35mil "SDA" "8" "onsolder,square,nopaste"]
+	Pad[22.82mil 75.00mil 40.00mil 75.00mil 28.35mil 0.0000 34.35mil "VDD" "1" "square,nopaste"]
+	Pad[22.82mil 25.00mil 40.00mil 25.00mil 28.35mil 0.0000 34.35mil "SCL" "2" "square,nopaste"]
+	Pad[22.82mil -25.00mil 40.00mil -25.00mil 28.35mil 0.0000 34.35mil "GND" "3" "square,nopaste"]
+	Pad[22.82mil -75.00mil 40.00mil -75.00mil 28.35mil 0.0000 34.35mil "LEDA" "4" "square,nopaste"]
+	Pad[22.82mil -75.00mil 40.00mil -75.00mil 28.35mil 0.0000 34.35mil "LEDK" "5" "onsolder,square,nopaste"]
+	Pad[22.82mil -25.00mil 40.00mil -25.00mil 28.35mil 0.0000 34.35mil "LDR" "6" "onsolder,square,nopaste"]
+	Pad[22.82mil 25.00mil 40.00mil 25.00mil 28.35mil 0.0000 34.35mil "INT" "7" "onsolder,square,nopaste"]
+	Pad[22.82mil 75.00mil 40.00mil 75.00mil 28.35mil 0.0000 34.35mil "SDA" "8" "onsolder,square,nopaste"]
 	ElementArc [80.00mil 97.68mil 5.00mil 5.00mil 180 360 10.00mil]
 
 	)
