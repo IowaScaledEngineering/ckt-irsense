@@ -38,8 +38,8 @@ FUSE_E  = 0xFF
 SRCS = $(BASE_NAME).c
 INCS = 
 
-AVRDUDE = avrdude -c usbtiny -P usb -p $(DEVICE) -B1
-AVRDUDE_SLOW = avrdude -c usbtiny -P usb -p $(DEVICE) -B32
+AVRDUDE = avrdude -c iseavrprog -P usb -p $(DEVICE) -B1
+AVRDUDE_SLOW = avrdude -c iseavrprog -P usb -p $(DEVICE) -B32
 
 OBJS = ${SRCS:.c=.o}
 INCLUDES = -I.
