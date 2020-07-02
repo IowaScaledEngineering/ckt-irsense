@@ -3,7 +3,7 @@
 # To read pcb files, the pcb version (or the git source date) must be >= the file version
 FileVersion[20091103]
 
-PCB["" 2300.00mil 1000.00mil]
+PCB["" 2300.00mil 450.00mil]
 
 Grid[500.000000 0.0000 0.0000 0]
 PolyArea[200000000.000000]
@@ -1297,7 +1297,6 @@ Layer(5 "silk")
 (
 	Line[1930.00mil 165.00mil 1960.00mil 165.00mil 8.00mil 20.00mil "clearline"]
 	Line[1945.00mil 150.00mil 1945.00mil 180.00mil 8.00mil 20.00mil "clearline"]
-	Text[115.00mil 390.00mil 0 166 "Extend sensor pads" "clearline"]
 )
 NetList()
 (
