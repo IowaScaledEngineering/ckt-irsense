@@ -1010,7 +1010,7 @@ Element["" "0805" "D2" "unknown" 1860.00mil 165.00mil -36.50mil 33.50mil 0 80 ""
 
 	)
 
-Element["onsolder" "SolderJumperSmall" "JP1" "unknown" 490.00mil 235.00mil 125.38mil -87.62mil 2 100 "auto"]
+Element["onsolder" "SolderJumperSmall" "JP1" "unknown" 490.00mil 235.00mil -49.62mil -32.62mil 2 100 "auto"]
 (
 	Attribute("description" "Soldering Jumper, 60mil, open")
 	Attribute("author" "Stefan Salewski")
@@ -1158,6 +1158,10 @@ Layer(1 "top")
 	(
 		[930.00mil 120.00mil] [1040.00mil 120.00mil] [1040.00mil 190.00mil] [930.00mil 190.00mil] 
 	)
+	Polygon("clearpoly")
+	(
+		[2200.00mil 100.00mil] [2125.00mil 100.00mil] [2125.00mil 350.00mil] [2200.00mil 350.00mil] 
+	)
 )
 Layer(2 "bottom")
 (
@@ -1181,7 +1185,7 @@ Layer(2 "bottom")
 	Line[1110.00mil 255.00mil 1110.00mil 230.00mil 10.00mil 20.00mil "clearline"]
 	Line[865.00mil 200.00mil 865.00mil 130.00mil 20.00mil 20.00mil ""]
 	Line[1070.00mil 235.00mil 1070.00mil 135.00mil 20.00mil 20.00mil ""]
-	Line[955.00mil 325.00mil 1795.00mil 325.00mil 10.00mil 20.00mil "clearline"]
+	Line[955.00mil 325.00mil 1795.00mil 325.00mil 10.00mil 20.00mil ""]
 	Line[175.00mil 155.00mil 385.00mil 155.00mil 25.00mil 20.00mil "clearline"]
 	Line[490.00mil 193.62mil 490.00mil 135.00mil 18.00mil 20.00mil ""]
 	Line[900.00mil 310.00mil 710.00mil 310.00mil 8.00mil 20.00mil "clearline"]
@@ -1263,6 +1267,10 @@ Layer(2 "bottom")
 	(
 		[535.00mil 120.00mil] [455.00mil 120.00mil] [455.00mil 170.00mil] [535.00mil 170.00mil] 
 	)
+	Polygon("clearpoly")
+	(
+		[335.00mil 175.00mil] [270.00mil 175.00mil] [270.00mil 245.00mil] [335.00mil 245.00mil] 
+	)
 )
 Layer(3 "outline")
 (
@@ -1283,6 +1291,7 @@ Layer(4 "silk")
 	Text[45.4551mm 205.00mil 2 90 "CKT-IRSENSE v4.0" "clearline,onsolder"]
 	Text[1515.00mil 275.00mil 2 80 "(C)2020" "clearline,onsolder"]
 	Text[1780.00mil 275.00mil 2 80 "CC-BY-SA" "clearline,onsolder"]
+	Text[19.5471mm 115.00mil 2 89 "iascaled.com" "clearline,onsolder"]
 )
 Layer(5 "silk")
 (
