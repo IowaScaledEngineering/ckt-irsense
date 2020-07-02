@@ -1286,6 +1286,8 @@ Layer(4 "silk")
 )
 Layer(5 "silk")
 (
+	Line[1930.00mil 165.00mil 1960.00mil 165.00mil 8.00mil 20.00mil "clearline"]
+	Line[1945.00mil 150.00mil 1945.00mil 180.00mil 8.00mil 20.00mil "clearline"]
 	Text[115.00mil 390.00mil 0 166 "Extend sensor pads" "clearline"]
 )
 NetList()
