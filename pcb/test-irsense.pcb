@@ -788,8 +788,10 @@ Symbol['~' 12.00mil]
 Attribute("PCB::grid::unit" "mil")
 Attribute("import::src0" "/home/data/design/iascaled-internal/design/ckt-irsense/sch/ckt-irsense.sch")
 Via[265.00mil 13.7400mm 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(1S)"]
-Via[1149.00mil 900.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(1S)"]
-Via[1149.00mil 300.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(1S)"]
+Via[1450.00mil 105.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(1S)"]
+Via[1300.00mil 105.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(1S)"]
+Via[1109.00mil 900.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(1S)"]
+Via[1109.00mil 300.00mil 40.00mil 20.00mil 0.0000 20.00mil "" "thermal(1S)"]
 
 Element["" "#4 hex stand off" "" "" 170.00mil 170.00mil 0.0000 100.00mil 0 100 ""]
 (
@@ -856,58 +858,6 @@ Element["" "CUI_PJ-202AH.fp" "" "" 2000.00mil 600.00mil -10.00mil 240.00mil 2 10
 
 	)
 
-Element["" "Tyco Alcoswitch FSMJSMA" "SW1" "fsmjsma" 1060.00mil 900.00mil -195.00mil 50.00mil 1 100 ""]
-(
-	Attribute("author" "Alexander Kurz")
-	Attribute("copyright" "2008 Alexander Kurz")
-	Attribute("use-license" "Unlimited")
-	Attribute("dist-license" "CC-BY-SA-2.5")
-	Attribute("height" "3.8mm")
-	Attribute("ref" "tycoelectronics.com document number 1308390_0904_E3_E10")
-	Pad[89.00mil -193.50mil 89.00mil -165.50mil 55.00mil 10.00mil 61.00mil "1" "1" "square"]
-	Pad[89.00mil 165.50mil 89.00mil 193.50mil 55.00mil 10.00mil 61.00mil "2" "2" "square,edge2"]
-	Pad[-89.00mil -193.50mil -89.00mil -165.50mil 55.00mil 10.00mil 61.00mil "3" "3" "square"]
-	Pad[-89.00mil 165.50mil -89.00mil 193.50mil 55.00mil 10.00mil 61.00mil "4" "4" "square,edge2"]
-	ElementLine [-118.00mil -118.00mil -118.00mil 118.00mil 10.00mil]
-	ElementLine [118.00mil -118.00mil 118.00mil 118.00mil 10.00mil]
-	ElementLine [-118.00mil -118.00mil 118.00mil -118.00mil 10.00mil]
-	ElementLine [-118.00mil 118.00mil 118.00mil 118.00mil 10.00mil]
-	ElementLine [-88.50mil -103.25mil -88.50mil 103.25mil 10.00mil]
-	ElementLine [88.50mil -103.25mil 88.50mil 103.25mil 10.00mil]
-	ElementLine [88.50mil -88.50mil 29.50mil -88.50mil 10.00mil]
-	ElementLine [-88.50mil -88.50mil -29.50mil -88.50mil 10.00mil]
-	ElementLine [29.50mil -103.25mil -29.50mil -88.50mil 10.00mil]
-	ElementArc [0.0000 0.0000 69.00mil 69.00mil 0 360 10.00mil]
-	ElementArc [0.0000 0.0000 69.00mil 69.00mil 0 180 10.00mil]
-
-	)
-
-Element["" "Tyco Alcoswitch FSMJSMA" "SW2" "fsmjsma" 1060.00mil 300.00mil -195.00mil 50.00mil 1 100 ""]
-(
-	Attribute("author" "Alexander Kurz")
-	Attribute("copyright" "2008 Alexander Kurz")
-	Attribute("use-license" "Unlimited")
-	Attribute("dist-license" "CC-BY-SA-2.5")
-	Attribute("height" "3.8mm")
-	Attribute("ref" "tycoelectronics.com document number 1308390_0904_E3_E10")
-	Pad[89.00mil -193.50mil 89.00mil -165.50mil 55.00mil 10.00mil 61.00mil "1" "1" "square"]
-	Pad[89.00mil 165.50mil 89.00mil 193.50mil 55.00mil 10.00mil 61.00mil "2" "2" "square,edge2"]
-	Pad[-89.00mil -193.50mil -89.00mil -165.50mil 55.00mil 10.00mil 61.00mil "3" "3" "square"]
-	Pad[-89.00mil 165.50mil -89.00mil 193.50mil 55.00mil 10.00mil 61.00mil "4" "4" "square,edge2"]
-	ElementLine [-118.00mil -118.00mil -118.00mil 118.00mil 10.00mil]
-	ElementLine [118.00mil -118.00mil 118.00mil 118.00mil 10.00mil]
-	ElementLine [-118.00mil -118.00mil 118.00mil -118.00mil 10.00mil]
-	ElementLine [-118.00mil 118.00mil 118.00mil 118.00mil 10.00mil]
-	ElementLine [-88.50mil -103.25mil -88.50mil 103.25mil 10.00mil]
-	ElementLine [88.50mil -103.25mil 88.50mil 103.25mil 10.00mil]
-	ElementLine [88.50mil -88.50mil 29.50mil -88.50mil 10.00mil]
-	ElementLine [-88.50mil -88.50mil -29.50mil -88.50mil 10.00mil]
-	ElementLine [29.50mil -103.25mil -29.50mil -88.50mil 10.00mil]
-	ElementArc [0.0000 0.0000 69.00mil 69.00mil 0 360 10.00mil]
-	ElementArc [0.0000 0.0000 69.00mil 69.00mil 0 180 10.00mil]
-
-	)
-
 Element["" "Standard SMT resistor, capacitor etc" "" "0805" 720.43mil 500.00mil 31.50mil 31.50mil 2 100 ""]
 (
 	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
@@ -943,11 +893,111 @@ Element["" "Standard SMT resistor, capacitor etc" "" "0805" 720.43mil 700.00mil 
 	ElementLine [-3.93mil -27.55mil 3.93mil -27.55mil 10.00mil]
 
 	)
+
+Element["" "SOT89-3" "" "SOT89-3" 1375.00mil 220.00mil 25.95mil -22.04mil 3 100 ""]
+(
+	Pad[-59.06mil 18.90mil -59.06mil 59.84mil 37.80mil 20.00mil 43.80mil "1" "1" "pin,square,edge2"]
+	Pad[0.0000 -58.26mil 0.0000 59.84mil 37.80mil 20.00mil 43.80mil "2" "2" "pin,square,edge2"]
+	Pad[0.0000 -94.50mil 0.0000 -75.60mil 94.50mil 20.00mil 100.50mil "2" "2" "pin,square"]
+	Pad[-33.05mil -28.35mil -18.85mil -14.15mil 20.08mil 20.00mil 26.08mil "2" "2" "pin,square,edge2"]
+	Pad[18.85mil -14.15mil 33.05mil -28.35mil 20.08mil 20.00mil 26.08mil "2" "2" "pin,square,edge2"]
+	Pad[59.06mil 18.90mil 59.06mil 59.84mil 37.80mil 20.00mil 43.80mil "3" "3" "pin,square,edge2"]
+	ElementLine [-92.50mil -81.50mil -92.50mil 24.80mil 10.00mil]
+	ElementLine [92.50mil -81.50mil 92.50mil 24.80mil 10.00mil]
+	ElementLine [-92.50mil -81.50mil -60.00mil -81.50mil 10.00mil]
+	ElementLine [92.50mil -81.50mil 60.00mil -81.50mil 10.00mil]
+	ElementLine [-92.50mil 24.80mil -90.71mil 24.80mil 10.00mil]
+	ElementLine [90.71mil 24.80mil 92.50mil 24.80mil 10.00mil]
+
+	)
+
+Element["" "SolderJumper" "" "" 1375.00mil 375.00mil -64.00mil -100.00mil 0 100 ""]
+(
+	Attribute("description" "Soldering Jumper, 60mil, open")
+	Attribute("author" "Stefan Salewski")
+	Attribute("copyright" "2008 S. Salewski")
+	Attribute("use-license" "unlimited")
+	Attribute("dist-license" "GPL")
+	Pad[-34.00mil 0.0000 -34.00mil 0.0000 60.00mil 20.00mil 60.00mil "1" "1" ""]
+	Pad[-19.00mil -15.00mil -19.00mil 15.00mil 30.00mil 20.00mil 30.00mil "1" "1" "square"]
+	Pad[34.00mil 0.0000 34.00mil 0.0000 60.00mil 20.00mil 60.00mil "2" "2" "edge2"]
+	Pad[19.00mil -15.00mil 19.00mil 15.00mil 30.00mil 20.00mil 30.00mil "2" "2" "square"]
+
+	)
+
+Element["" "Standard SMT resistor, capacitor etc" "" "0805" 1520.00mil 220.00mil -31.50mil 31.50mil 1 100 ""]
+(
+	Pad[-3.93mil 35.43mil 3.93mil 35.43mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
+	Pad[-3.93mil -35.43mil 3.93mil -35.43mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
+	ElementLine [-27.55mil -3.93mil -27.55mil 3.93mil 10.00mil]
+	ElementLine [27.55mil -3.93mil 27.55mil 3.93mil 10.00mil]
+
+	)
+
+Element["" "Standard SMT resistor, capacitor etc" "" "0805" 1230.00mil 220.00mil -31.50mil 31.50mil 1 100 ""]
+(
+	Pad[-3.93mil 35.43mil 3.93mil 35.43mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
+	Pad[-3.93mil -35.43mil 3.93mil -35.43mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
+	ElementLine [-27.55mil -3.93mil -27.55mil 3.93mil 10.00mil]
+	ElementLine [27.55mil -3.93mil 27.55mil 3.93mil 10.00mil]
+
+	)
+
+Element["" "Tyco Alcoswitch FSMJSMA" "SW1" "fsmjsma" 1020.00mil 900.00mil -195.00mil 50.00mil 1 100 ""]
+(
+	Attribute("author" "Alexander Kurz")
+	Attribute("copyright" "2008 Alexander Kurz")
+	Attribute("use-license" "Unlimited")
+	Attribute("dist-license" "CC-BY-SA-2.5")
+	Attribute("height" "3.8mm")
+	Attribute("ref" "tycoelectronics.com document number 1308390_0904_E3_E10")
+	Pad[89.00mil -193.50mil 89.00mil -165.50mil 55.00mil 10.00mil 61.00mil "1" "1" "square"]
+	Pad[89.00mil 165.50mil 89.00mil 193.50mil 55.00mil 10.00mil 61.00mil "2" "2" "square,edge2"]
+	Pad[-89.00mil -193.50mil -89.00mil -165.50mil 55.00mil 10.00mil 61.00mil "3" "3" "square"]
+	Pad[-89.00mil 165.50mil -89.00mil 193.50mil 55.00mil 10.00mil 61.00mil "4" "4" "square,edge2"]
+	ElementLine [-118.00mil -118.00mil -118.00mil 118.00mil 10.00mil]
+	ElementLine [118.00mil -118.00mil 118.00mil 118.00mil 10.00mil]
+	ElementLine [-118.00mil -118.00mil 118.00mil -118.00mil 10.00mil]
+	ElementLine [-118.00mil 118.00mil 118.00mil 118.00mil 10.00mil]
+	ElementLine [-88.50mil -103.25mil -88.50mil 103.25mil 10.00mil]
+	ElementLine [88.50mil -103.25mil 88.50mil 103.25mil 10.00mil]
+	ElementLine [88.50mil -88.50mil 29.50mil -88.50mil 10.00mil]
+	ElementLine [-88.50mil -88.50mil -29.50mil -88.50mil 10.00mil]
+	ElementLine [29.50mil -103.25mil -29.50mil -88.50mil 10.00mil]
+	ElementArc [0.0000 0.0000 69.00mil 69.00mil 0 360 10.00mil]
+	ElementArc [0.0000 0.0000 69.00mil 69.00mil 0 180 10.00mil]
+
+	)
+
+Element["" "Tyco Alcoswitch FSMJSMA" "SW2" "fsmjsma" 1020.00mil 300.00mil -195.00mil 50.00mil 1 100 ""]
+(
+	Attribute("author" "Alexander Kurz")
+	Attribute("copyright" "2008 Alexander Kurz")
+	Attribute("use-license" "Unlimited")
+	Attribute("dist-license" "CC-BY-SA-2.5")
+	Attribute("height" "3.8mm")
+	Attribute("ref" "tycoelectronics.com document number 1308390_0904_E3_E10")
+	Pad[89.00mil -193.50mil 89.00mil -165.50mil 55.00mil 10.00mil 61.00mil "1" "1" "square"]
+	Pad[89.00mil 165.50mil 89.00mil 193.50mil 55.00mil 10.00mil 61.00mil "2" "2" "square,edge2"]
+	Pad[-89.00mil -193.50mil -89.00mil -165.50mil 55.00mil 10.00mil 61.00mil "3" "3" "square"]
+	Pad[-89.00mil 165.50mil -89.00mil 193.50mil 55.00mil 10.00mil 61.00mil "4" "4" "square,edge2"]
+	ElementLine [-118.00mil -118.00mil -118.00mil 118.00mil 10.00mil]
+	ElementLine [118.00mil -118.00mil 118.00mil 118.00mil 10.00mil]
+	ElementLine [-118.00mil -118.00mil 118.00mil -118.00mil 10.00mil]
+	ElementLine [-118.00mil 118.00mil 118.00mil 118.00mil 10.00mil]
+	ElementLine [-88.50mil -103.25mil -88.50mil 103.25mil 10.00mil]
+	ElementLine [88.50mil -103.25mil 88.50mil 103.25mil 10.00mil]
+	ElementLine [88.50mil -88.50mil 29.50mil -88.50mil 10.00mil]
+	ElementLine [-88.50mil -88.50mil -29.50mil -88.50mil 10.00mil]
+	ElementLine [29.50mil -103.25mil -29.50mil -88.50mil 10.00mil]
+	ElementArc [0.0000 0.0000 69.00mil 69.00mil 0 360 10.00mil]
+	ElementArc [0.0000 0.0000 69.00mil 69.00mil 0 180 10.00mil]
+
+	)
 Layer(1 "top")
 (
 	Line[540.86mil 500.00mil 685.00mil 500.00mil 10.00mil 20.00mil "clearline"]
 	Line[540.86mil 700.00mil 685.00mil 700.00mil 10.00mil 20.00mil "clearline"]
-	Line[1460.00mil 600.00mil 325.00mil 600.00mil 20.00mil 20.00mil "clearline"]
 	Line[325.00mil 600.00mil 7.7550mm 14.7400mm 20.00mil 20.00mil "clearline"]
 	Line[7.7550mm 14.7400mm 200.00mil 14.7400mm 20.00mil 20.00mil "clearline"]
 	Line[200.00mil 13.7400mm 265.00mil 13.7400mm 20.00mil 20.00mil "clearline"]
@@ -960,16 +1010,33 @@ Layer(1 "top")
 	Line[7.3420mm 16.7400mm 330.00mil 700.00mil 10.00mil 20.00mil "clearline"]
 	Line[330.00mil 700.00mil 470.00mil 700.00mil 10.00mil 20.00mil "clearline"]
 	Line[755.86mil 500.00mil 755.86mil 700.00mil 10.00mil 20.00mil "clearline"]
-	Line[1149.00mil 720.50mil 1149.00mil 1079.50mil 10.00mil 20.00mil "clearline"]
-	Line[1149.00mil 120.50mil 1149.00mil 479.50mil 10.00mil 20.00mil "clearline"]
-	Line[971.00mil 120.50mil 971.00mil 479.50mil 10.00mil 20.00mil "clearline"]
-	Line[971.00mil 720.50mil 971.00mil 1079.50mil 10.00mil 20.00mil "clearline"]
 	Line[470.00mil 700.00mil 470.00mil 765.00mil 10.00mil 20.00mil "clearline"]
 	Line[470.00mil 765.00mil 505.00mil 800.00mil 10.00mil 20.00mil "clearline"]
-	Line[505.00mil 800.00mil 971.00mil 800.00mil 10.00mil 20.00mil "clearline"]
+	Line[505.00mil 800.00mil 930.00mil 800.00mil 10.00mil 20.00mil "clearline"]
 	Line[470.00mil 500.00mil 470.00mil 435.00mil 10.00mil 20.00mil "clearline"]
 	Line[470.00mil 435.00mil 505.00mil 400.00mil 10.00mil 20.00mil "clearline"]
-	Line[505.00mil 400.00mil 971.00mil 400.00mil 10.00mil 20.00mil "clearline"]
+	Line[505.00mil 400.00mil 930.00mil 400.00mil 10.00mil 20.00mil "clearline"]
+	Line[36.4251mm 6.5880mm 36.4251mm 349.94mil 10.00mil 20.00mil "clearline"]
+	Line[36.4251mm 349.94mil 1409.00mil 375.00mil 10.00mil 20.00mil "clearline"]
+	Line[1409.00mil 375.00mil 1409.00mil 429.00mil 10.00mil 20.00mil "clearline"]
+	Line[1409.00mil 429.00mil 1460.00mil 480.00mil 10.00mil 20.00mil "clearline"]
+	Line[1460.00mil 480.00mil 1460.00mil 600.00mil 10.00mil 20.00mil "clearline"]
+	Line[33.4249mm 6.5880mm 33.4249mm 349.94mil 20.00mil 20.00mil "clearline"]
+	Line[33.4249mm 349.94mil 1341.00mil 375.00mil 20.00mil 20.00mil "clearline"]
+	Line[1341.00mil 375.00mil 1341.00mil 504.00mil 20.00mil 20.00mil "clearline"]
+	Line[1341.00mil 504.00mil 1245.00mil 600.00mil 20.00mil 20.00mil "clearline"]
+	Line[1245.00mil 600.00mil 325.00mil 600.00mil 20.00mil 20.00mil "clearline"]
+	Line[36.4251mm 6.5880mm 1520.00mil 6.5880mm 20.00mil 20.00mil "clearline"]
+	Line[33.4249mm 6.5880mm 1230.00mil 6.5880mm 20.00mil 20.00mil "clearline"]
+	Line[1230.00mil 184.57mil 1230.00mil 125.00mil 20.00mil 20.00mil "clearline"]
+	Line[1230.00mil 125.00mil 1250.00mil 105.00mil 20.00mil 20.00mil "clearline"]
+	Line[1520.00mil 184.57mil 1520.00mil 125.00mil 20.00mil 20.00mil "clearline"]
+	Line[1520.00mil 125.00mil 1500.00mil 105.00mil 20.00mil 20.00mil "clearline"]
+	Line[1250.00mil 105.00mil 1500.00mil 105.00mil 20.00mil 20.00mil "clearline"]
+	Line[1109.00mil 720.50mil 1109.00mil 1079.50mil 10.00mil 20.00mil "clearline"]
+	Line[1109.00mil 120.50mil 1109.00mil 479.50mil 10.00mil 20.00mil "clearline"]
+	Line[931.00mil 120.50mil 931.00mil 479.50mil 10.00mil 20.00mil "clearline"]
+	Line[931.00mil 720.50mil 931.00mil 1079.50mil 10.00mil 20.00mil "clearline"]
 	Polygon("clearpoly")
 	(
 		[0.0000 350.00mil] [95.00mil 350.00mil] [95.00mil 850.00mil] [0.0000 850.00mil] 
