@@ -1,6 +1,6 @@
 v 20130925 2
 T 55000 40900 9 10 1 0 0 0 1
-Reflective IR Model Railroad Sensor (v3)
+Reflective IR Model Railroad Sensor (v4)
 T 54800 40600 9 10 1 0 0 0 1
 ckt-irsense.sch
 T 55000 40300 9 10 1 0 0 0 1
