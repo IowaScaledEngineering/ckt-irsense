@@ -1261,7 +1261,7 @@ Layer(4 "silk")
 	Text[2100.00mil 140.00mil 1 100 "Scaled" "clearline,onsolder"]
 	Text[2035.00mil 165.00mil 1 100 "Iowa" "clearline,onsolder"]
 	Text[46.5981mm 125.00mil 2 112 "TrainSpotter" "clearline,onsolder"]
-	Text[47.3601mm 205.00mil 2 90 "CKT-IRSENSE v4.1" "clearline,onsolder"]
+	Text[1930.00mil 205.00mil 2 90 "CKT-IRSENSE-RA v4.1" "clearline,onsolder"]
 	Text[1590.00mil 275.00mil 2 80 "(C)2020" "clearline,onsolder"]
 	Text[1855.00mil 275.00mil 2 80 "CC-BY-SA" "clearline,onsolder"]
 	Text[21.4521mm 115.00mil 2 89 "iascaled.com" "clearline,onsolder"]
