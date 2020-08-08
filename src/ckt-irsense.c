@@ -189,8 +189,11 @@ void init(void)
 	PORTB = _BV(SCL) | _BV(PB1);  // All outputs low except SCL and PB1
 	DDRB |= _BV(PB1) | _BV(SCL) | _BV(PB3);
 	
+#ifndef TWOPIECE
+	// Enable internal pull-up on ADJ pin
 	DDRB &= ~_BV(PB4);
 	PORTB |= _BV(PB4);
+#endif
 }
 
 void initializeTMD267x1()
