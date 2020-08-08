@@ -33,7 +33,11 @@ FUSE_L  = 0xE2
 FUSE_H  = 0xC5
 FUSE_E  = 0xFF
 
-#OPTS = -DLONG_DELAY
+#SENSOR = -DTMD26711
+#BOARD  = -DTWOPIECE
+#OPTS   = -DLONG_DELAY
+
+RELEASE_DECISECS = 30
 
 SRCS = $(BASE_NAME).c
 INCS = 
@@ -46,7 +50,7 @@ INCLUDES = -I.
 CFLAGS  = $(INCLUDES) -Wall -O2 -std=gnu99 -ffunction-sections -fdata-sections
 LDFLAGS = -Wl,-gc-sections
 
-COMPILE = avr-gcc $(DEFINES) -DF_CPU=$(F_CPU) $(OPTS) $(CFLAGS) $(LDFLAGS) -mmcu=$(DEVICE)
+COMPILE = avr-gcc $(DEFINES) -DF_CPU=$(F_CPU) $(OPTS) $(SENSOR) $(BOARD) -DRELEASE_DECISECS=$(RELEASE_DECISECS) $(CFLAGS) $(LDFLAGS) -mmcu=$(DEVICE)
 
 # -E -dM options preprocess only and output results of #define
 #COMPILE = avr-gcc -Wall -Os -DF_CPU=$(F_CPU) $(CFLAGS) -mmcu=$(DEVICE) -E -dM

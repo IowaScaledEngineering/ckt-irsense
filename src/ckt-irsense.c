@@ -26,8 +26,6 @@ LICENSE:
 #include <avr/wdt.h>
 #include <util/delay.h>
 
-//#define TMD26711
-
 #define   TMD267x1_ADDR   0x39
 #define   INFO_ADDR       0x20
 
@@ -272,14 +270,18 @@ int main(void)
 			adc_filt = adc_filt + ((adc - adc_filt) / 4);
 
 			on_debounce = ON_DEBOUNCE_DEFAULT;
+#ifdef TWOPIECE
 			off_debounce = ((1023 - adc_filt) - 100 + 2) / 4;  // Invert, shift, divide-by-4, round
 			if(off_debounce < 1)
 				off_debounce = 1;  // Limit to 1
+#else
+			off_debounce = (adc_filt > 512) ? 1 : RELEASE_DECISECS;
+#endif
 #ifdef LONG_DELAY
 			off_debounce *= 60;
 #endif
 			// Telemetry
-			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
+//			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
 
 			if (sensorError)
 			{
