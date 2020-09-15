@@ -26,8 +26,6 @@ LICENSE:
 #include <avr/wdt.h>
 #include <util/delay.h>
 
-//#define TMD26711
-
 #define   TMD267x1_ADDR   0x39
 #define   INFO_ADDR       0x20
 
@@ -52,15 +50,15 @@ void initialize100HzTimer(void)
 {
 	// Set up timer 0 for 100Hz interrupts
 	TCNT0 = 0;
-	OCR0A = 78;  // 8MHz / 1024 / 78 = 100Hz
+	OCR0A = 94;  // 9.6MHz / 1024 / 94 = 100Hz
 	ticks = 0;
 	decisecs = 0;
 	TCCR0A = _BV(WGM01);
 	TCCR0B = _BV(CS02) | _BV(CS00);  // 1024 prescaler
-	TIMSK |= _BV(OCIE0A);
+	TIMSK0 |= _BV(OCIE0A);
 }
 
-ISR(TIMER0_COMPA_vect)
+ISR(TIM0_COMPA_vect)
 {
 	if (++ticks >= 10)
 	{
@@ -191,8 +189,11 @@ void init(void)
 	PORTB = _BV(SCL) | _BV(PB1);  // All outputs low except SCL and PB1
 	DDRB |= _BV(PB1) | _BV(SCL) | _BV(PB3);
 	
+#ifndef TWOPIECE
+	// Enable internal pull-up on ADJ pin
 	DDRB &= ~_BV(PB4);
 	PORTB |= _BV(PB4);
+#endif
 }
 
 void initializeTMD267x1()
@@ -272,14 +273,18 @@ int main(void)
 			adc_filt = adc_filt + ((adc - adc_filt) / 4);
 
 			on_debounce = ON_DEBOUNCE_DEFAULT;
+#ifdef TWOPIECE
 			off_debounce = ((1023 - adc_filt) - 100 + 2) / 4;  // Invert, shift, divide-by-4, round
 			if(off_debounce < 1)
 				off_debounce = 1;  // Limit to 1
+#else
+			off_debounce = (adc_filt > 512) ? 1 : RELEASE_DECISECS;
+#endif
 #ifdef LONG_DELAY
 			off_debounce *= 60;
 #endif
 			// Telemetry
-			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
+//			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
 
 			if (sensorError)
 			{
