@@ -50,15 +50,15 @@ void initialize100HzTimer(void)
 {
 	// Set up timer 0 for 100Hz interrupts
 	TCNT0 = 0;
-	OCR0A = 78;  // 8MHz / 1024 / 78 = 100Hz
+	OCR0A = 94;  // 9.6MHz / 1024 / 94 = 100Hz
 	ticks = 0;
 	decisecs = 0;
 	TCCR0A = _BV(WGM01);
 	TCCR0B = _BV(CS02) | _BV(CS00);  // 1024 prescaler
-	TIMSK |= _BV(OCIE0A);
+	TIMSK0 |= _BV(OCIE0A);
 }
 
-ISR(TIMER0_COMPA_vect)
+ISR(TIM0_COMPA_vect)
 {
 	if (++ticks >= 10)
 	{

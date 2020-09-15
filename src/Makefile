@@ -27,11 +27,10 @@
 BASE_NAME = ckt-irsense
 
 # ATmega85 8MHz internal oscillator
-DEVICE  = attiny45
-F_CPU   = 8000000
-FUSE_L  = 0xE2
-FUSE_H  = 0xC5
-FUSE_E  = 0xFF
+DEVICE  = attiny13
+F_CPU   = 9600000
+FUSE_L  = 0x1A
+FUSE_H  = 0xFB
 
 #SENSOR = -DTMD26711
 #BOARD  = -DTWOPIECE
@@ -42,12 +41,12 @@ RELEASE_DECISECS = 50
 SRCS = $(BASE_NAME).c
 INCS = 
 
-AVRDUDE = avrdude -c iseavrprog -P usb -p $(DEVICE) -B1
+AVRDUDE = avrdude -c iseavrprog -P usb -p $(DEVICE) -B32
 AVRDUDE_SLOW = avrdude -c iseavrprog -P usb -p $(DEVICE) -B32
 
 OBJS = ${SRCS:.c=.o}
 INCLUDES = -I.
-CFLAGS  = $(INCLUDES) -Wall -O2 -std=gnu99 -ffunction-sections -fdata-sections
+CFLAGS  = $(INCLUDES) -Wall -Os -std=gnu99 -ffunction-sections -fdata-sections
 LDFLAGS = -Wl,-gc-sections
 
 COMPILE = avr-gcc $(DEFINES) -DF_CPU=$(F_CPU) $(OPTS) $(SENSOR) $(BOARD) -DRELEASE_DECISECS=$(RELEASE_DECISECS) $(CFLAGS) $(LDFLAGS) -mmcu=$(DEVICE)
@@ -77,9 +76,9 @@ terminal:
 
 # rule for programming fuse bits:
 fuse:
-	@[ "$(FUSE_H)" != "" -a "$(FUSE_L)" != "" -a "$(FUSE_E)" != "" ] || \
+	@[ "$(FUSE_H)" != "" -a "$(FUSE_L)" != "" ] || \
 		{ echo "*** Invalid Fuse values."; exit 1; }
-	$(AVRDUDE_SLOW) -U hfuse:w:$(FUSE_H):m -U lfuse:w:$(FUSE_L):m -U efuse:w:$(FUSE_E):m
+	$(AVRDUDE_SLOW) -U hfuse:w:$(FUSE_H):m -U lfuse:w:$(FUSE_L):m
 
 read:
 	$(AVRDUDE) -v
