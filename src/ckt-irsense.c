@@ -26,7 +26,7 @@ LICENSE:
 #include <avr/wdt.h>
 #include <util/delay.h>
 
-#define   TMD26711_ADDR   0x39
+#define   TMD267x1_ADDR   0x39
 #define   INFO_ADDR       0x20
 
 #define   PROXIMITY_THRESHOLD     0x300
@@ -38,8 +38,8 @@ LICENSE:
 #define   SDA   PB0
 #define   SCL   PB2
 
-static inline void sda_low() { DDRB |= _BV(SDA); _delay_us(10); }
-static inline void sda_high() { DDRB &= ~_BV(SDA); _delay_us(10); }
+static inline void sda_low() { DDRB |= _BV(SDA); PORTB &= ~_BV(SDA); _delay_us(10); }
+static inline void sda_high() { DDRB &= ~_BV(SDA); PORTB |= _BV(SDA); _delay_us(10); }
 static inline void scl_low() { PORTB &= ~_BV(SCL); _delay_us(10); }
 static inline void scl_high() { PORTB |= _BV(SCL); _delay_us(10); }
 
@@ -50,15 +50,15 @@ void initialize100HzTimer(void)
 {
 	// Set up timer 0 for 100Hz interrupts
 	TCNT0 = 0;
-	OCR0A = 78;  // 8MHz / 1024 / 78 = 100Hz
+	OCR0A = 94;  // 9.6MHz / 1024 / 94 = 100Hz
 	ticks = 0;
 	decisecs = 0;
 	TCCR0A = _BV(WGM01);
 	TCCR0B = _BV(CS02) | _BV(CS00);  // 1024 prescaler
-	TIMSK |= _BV(OCIE0A);
+	TIMSK0 |= _BV(OCIE0A);
 }
 
-ISR(TIMER0_COMPA_vect)
+ISR(TIM0_COMPA_vect)
 {
 	if (++ticks >= 10)
 	{
@@ -188,28 +188,40 @@ void init(void)
 	
 	PORTB = _BV(SCL) | _BV(PB1);  // All outputs low except SCL and PB1
 	DDRB |= _BV(PB1) | _BV(SCL) | _BV(PB3);
+	
+#ifndef TWOPIECE
+	// Enable internal pull-up on ADJ pin
+	DDRB &= ~_BV(PB4);
+	PORTB |= _BV(PB4);
+#endif
 }
 
-void initializeTMD26711()
+void initializeTMD267x1()
 {
-	// Initialize TMD26711 (bit 0x80 set to indicate command)
-	writeByte(TMD26711_ADDR, 0x80|0x00, 0x00);   // Start with everything disabled
-	writeByte(TMD26711_ADDR, 0x80|0x01, 0xFF);   // Minimum ATIME
-	writeByte(TMD26711_ADDR, 0x80|0x02, 0xFF);   // Maximum integration time
-	writeByte(TMD26711_ADDR, 0x80|0x03, 0xFF);   // Minimum wait time
+	// Initialize TMD267x1 (bit 0x80 set to indicate command)
+	writeByte(TMD267x1_ADDR, 0x80|0x00, 0x00);   // Start with everything disabled
+	writeByte(TMD267x1_ADDR, 0x80|0x01, 0xFF);   // Minimum ATIME
+	writeByte(TMD267x1_ADDR, 0x80|0x02, 0xFF);   // Maximum integration time
+	writeByte(TMD267x1_ADDR, 0x80|0x03, 0xFF);   // Minimum wait time
 	
 	// Note: IRQ not currently used
-	writeByte(TMD26711_ADDR, 0x80|0x08, 0x00);   // Set interrupt low threshold to 0x0000
-	writeByte(TMD26711_ADDR, 0x80|0x09, 0x00);
-	writeByte(TMD26711_ADDR, 0x80|0x0A, 0x00);   // Set interrupt low threshold to 0x0300
-	writeByte(TMD26711_ADDR, 0x80|0x0B, 0x03);
-	writeByte(TMD26711_ADDR, 0x80|0x0C, 0x10);   // Single out-of-range cycle triggers interrupt
+	writeByte(TMD267x1_ADDR, 0x80|0x08, 0x00);   // Set interrupt low threshold to 0x0000
+	writeByte(TMD267x1_ADDR, 0x80|0x09, 0x00);
+	writeByte(TMD267x1_ADDR, 0x80|0x0A, 0x00);   // Set interrupt low threshold to 0x0300
+	writeByte(TMD267x1_ADDR, 0x80|0x0B, 0x03);
+	writeByte(TMD267x1_ADDR, 0x80|0x0C, 0x10);   // Single out-of-range cycle triggers interrupt
 
-	writeByte(TMD26711_ADDR, 0x80|0x0D, 0x00);   // Long wait disabled
-	writeByte(TMD26711_ADDR, 0x80|0x0E, PPULSE_DEFAULT); // Pulse count
-	writeByte(TMD26711_ADDR, 0x80|0x0F, 0x28);   // 100% LED drive strength, 4x gain, Use channel 1 diode (ch 1 seems less sensitive to fluorescent) light)
+	writeByte(TMD267x1_ADDR, 0x80|0x0D, 0x00);   // Long wait disabled
+	writeByte(TMD267x1_ADDR, 0x80|0x0E, PPULSE_DEFAULT); // Pulse count
 
-	writeByte(TMD26711_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
+#ifdef TMD26711
+#pragma GCC warning "*******   WARNING - Using TMD26711   *******"
+	writeByte(TMD267x1_ADDR, 0x80|0x0F, 0x20);   // 100% LED drive strength, Use channel 1 diode (ch 1 seems less sensitive to fluorescent light) - TMD26711
+#else
+	writeByte(TMD267x1_ADDR, 0x80|0x0F, 0x28);   // 100% LED drive strength, 4x gain, Use channel 1 diode (ch 1 seems less sensitive to fluorescent) light) - TMD26721
+#endif
+
+	writeByte(TMD267x1_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
 }
 
 void setOutputs(uint8_t detect)
@@ -241,7 +253,7 @@ int main(void)
 	initialize100HzTimer();
 	sei();
 
-	initializeTMD26711();
+	initializeTMD267x1();
 
 	while (1)
 	{
@@ -252,7 +264,7 @@ int main(void)
 			decisecs = 0;
 
 			ppulse = PPULSE_DEFAULT;
-			writeByte(TMD26711_ADDR, 0x80|0x0E, ppulse);
+			writeByte(TMD267x1_ADDR, 0x80|0x0E, ppulse);
 
 			// Read ADC
 			ADCSRA |= _BV(ADSC);  // Trigger conversion
@@ -261,21 +273,25 @@ int main(void)
 			adc_filt = adc_filt + ((adc - adc_filt) / 4);
 
 			on_debounce = ON_DEBOUNCE_DEFAULT;
+#ifdef TWOPIECE
 			off_debounce = ((1023 - adc_filt) - 100 + 2) / 4;  // Invert, shift, divide-by-4, round
 			if(off_debounce < 1)
 				off_debounce = 1;  // Limit to 1
+#else
+			off_debounce = (adc_filt > 512) ? 1 : RELEASE_DECISECS;
+#endif
 #ifdef LONG_DELAY
 			off_debounce *= 60;
 #endif
 			// Telemetry
-			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
+//			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
 
 			if (sensorError)
 			{
-				initializeTMD26711();
+				initializeTMD267x1();
 			}	
 
-			ack = readWord(TMD26711_ADDR, 0x80|0x20|0x18, &proximity);  // Read data register (0x80 = command, 0x20 = auto-increment)
+			ack = readWord(TMD267x1_ADDR, 0x80|0x20|0x18, &proximity);  // Read data register (0x80 = command, 0x20 = auto-increment)
 
 			if (!ack)
 			{

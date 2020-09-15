@@ -1,6 +1,6 @@
 schematics ckt-irsense.sch
 output-name ../pcb/ckt-irsense
 skip-m4
-elements-dir ../../footprints
+elements-dir ../../../footprints
 
 
