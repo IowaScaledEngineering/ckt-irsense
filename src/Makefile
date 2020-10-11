@@ -33,7 +33,7 @@ FUSE_L  = 0x1A
 FUSE_H  = 0xFB
 
 #SENSOR = -DTMD26711
-#BOARD  = -DTWOPIECE
+BOARD  = -DTWOPIECE
 #OPTS   = -DLONG_DELAY
 
 RELEASE_DECISECS = 50
@@ -57,10 +57,9 @@ COMPILE = avr-gcc $(DEFINES) -DF_CPU=$(F_CPU) $(OPTS) $(SENSOR) $(BOARD) -DRELEA
 help:
 	@echo "make hex ....... build $(BASE_NAME).hex"
 	@echo "make flash ..... flash the firmware"
-	@echo "make prod ...... flash the production firmware"
-	@echo "make prodlong .. flash the production firmware (long delay)"
 	@echo "make fuse ...... flash the fuses"
 	@echo "make program ... flash fuses and firmware"
+	@echo "make firmware .. flash firmware from file"
 	@echo "make read ...... read the fuses"
 	@echo "make size ...... memory usage"
 	@echo "make clean ..... delete objects and hex file"
@@ -90,11 +89,8 @@ size:
 flash: $(BASE_NAME).hex
 	$(AVRDUDE) -U flash:w:$(BASE_NAME).hex:i
 
-prod:
-	$(AVRDUDE) -U flash:w:hex/$(BASE_NAME).hex:i
-
-prodlong:
-	$(AVRDUDE) -U flash:w:hex/$(BASE_NAME)-long.hex:i
+firmware:
+	$(AVRDUDE) -U flash:w:$(HEX):i
 
 # rule for deleting dependent files (those which can be built by Make):
 clean:

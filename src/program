@@ -1,0 +1,9 @@
+#!/bin/bash
+
+espeak "Programming"
+make fuse firmware HEX=hex/ckt-irsense.hex
+
+if [ $? -eq 0 ]
+then espeak "Complete"
+else espeak "Failed"
+fi
