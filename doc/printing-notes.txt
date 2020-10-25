@@ -1,0 +1,8 @@
+IRSENSE INSERT
+--------------
+Print settings:
+- Print PDF from Acrobat
+- Use "Photo (sRGB)" color theme
+
+10/25/2020: "Yellowed" images to get better color rendition on printer
+
