@@ -41,7 +41,7 @@ RELEASE_DECISECS = 50
 SRCS = $(BASE_NAME).c
 INCS = 
 
-AVRDUDE = avrdude -c iseavrprog -P usb -p $(DEVICE) -B32
+AVRDUDE = avrdude -c iseavrprog -P usb -p $(DEVICE) -B4
 AVRDUDE_SLOW = avrdude -c iseavrprog -P usb -p $(DEVICE) -B32
 
 OBJS = ${SRCS:.c=.o}
