@@ -5,4 +5,4 @@ Print settings:
 - Use "Photo (sRGB)" color theme
 
 10/25/2020: "Yellowed" images to get better color rendition on printer
-
+10/30/2020: Reverted to original images
