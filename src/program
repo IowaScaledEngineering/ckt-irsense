@@ -1,10 +1,15 @@
 #!/bin/bash
 
-espeak "Programming"
-make firmware HEX=hex/ckt-irsense.hex
-make fuse
+while [ true ]
+do
+	espeak "Programming"
+	make firmware HEX=hex/ckt-irsense.hex
+	make fuse
 
-if [ $? -eq 0 ]
-then espeak "Complete"
-else espeak "Failed"
-fi
+	if [ $? -eq 0 ]
+	then espeak "Complete"
+	else espeak "Failed"
+	fi
+
+	read -n 1
+done
