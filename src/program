@@ -2,14 +2,21 @@
 
 while [ true ]
 do
+	echo -e "\n\033[1;33mProgramming\033[0m\n"
 	espeak "Programming"
 	make firmware HEX=hex/ckt-irsense.hex
 	make fuse
 
 	if [ $? -eq 0 ]
-	then espeak "Complete"
-	else espeak "Failed"
+	then 
+		echo -e "\033[0;32mComplete\033[0m\n"
+		espeak "Complete"
+	else 
+		echo -e "\033[0;31mFailed\033[0m\n"
+		espeak "Failed"
 	fi
 
-	read -n 1
+	read -t 1 -n 10000 discard
+	read -n 1 -p "Press any key to continue..."
+	echo
 done
