@@ -1,7 +1,7 @@
 #!/bin/bash
 
 espeak "Programming"
-make firmware HEX=hex/ckt-irsense-2pc-t13.hex
+make firmware HEX=hex/ckt-irsense-2pc-t13-longdelay.hex
 make fuse
 
 if [ $? -eq 0 ]
