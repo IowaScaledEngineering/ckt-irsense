@@ -16,7 +16,7 @@ do
 		espeak "Failed"
 	fi
 
-	read -t 1 -n 10000 discard
+	read -t 0.1 -n 1000 discard
 	read -n 1 -p "Press any key to continue..."
 	echo
 done
