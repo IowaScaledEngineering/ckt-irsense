@@ -1,0 +1,22 @@
+#!/bin/bash
+
+while [ true ]
+do
+	echo -e "\n\033[1;33mProgramming\033[0m\n"
+	espeak "Programming"
+	make firmware HEX=hex/ckt-irsense-tmd26711.hex
+	make fuse
+
+	if [ $? -eq 0 ]
+	then 
+		echo -e "\033[0;32mComplete\033[0m\n"
+		espeak "Complete"
+	else 
+		echo -e "\033[0;31mFailed\033[0m\n"
+		espeak "Failed"
+	fi
+
+	read -t 0.1 -n 1000 discard
+	read -n 1 -p "Press any key to continue..."
+	echo
+done
