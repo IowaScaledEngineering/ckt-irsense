@@ -196,13 +196,28 @@ void init(void)
 #endif
 }
 
+#define TMD26711_ID_VALUE 0x20
+#define TMD26713_ID_VALUE 0x29
+#define TMD26721_ID_VALUE 0x32
+#define TMD26723_ID_VALUE 0x38
+
 void initializeTMD267x1()
 {
+	uint16_t i=0;
+	uint8_t isTMD2671x = 0;
+	
 	// Initialize TMD267x1 (bit 0x80 set to indicate command)
 	writeByte(TMD267x1_ADDR, 0x80|0x00, 0x00);   // Start with everything disabled
 	writeByte(TMD267x1_ADDR, 0x80|0x01, 0xFF);   // Minimum ATIME
 	writeByte(TMD267x1_ADDR, 0x80|0x02, 0xFF);   // Maximum integration time
 	writeByte(TMD267x1_ADDR, 0x80|0x03, 0xFF);   // Minimum wait time
+
+	if (readWord(TMD267x1_ADDR, 0x80|0x20|0x12, &i))
+	{
+		i = 0x00FF & i;
+		if (TMD26711_ID_VALUE == i || TMD26713_ID_VALUE == i) // Also applies for TMD277xx, same IDs
+			isTMD2671x = 1;
+	}
 	
 	// Note: IRQ not currently used
 	writeByte(TMD267x1_ADDR, 0x80|0x08, 0x00);   // Set interrupt low threshold to 0x0000
@@ -214,13 +229,7 @@ void initializeTMD267x1()
 	writeByte(TMD267x1_ADDR, 0x80|0x0D, 0x00);   // Long wait disabled
 	writeByte(TMD267x1_ADDR, 0x80|0x0E, PPULSE_DEFAULT); // Pulse count
 
-#ifdef TMD26711
-#pragma GCC warning "*******   WARNING - Using TMD26711   *******"
-	writeByte(TMD267x1_ADDR, 0x80|0x0F, 0x20);   // 100% LED drive strength, Use channel 1 diode (ch 1 seems less sensitive to fluorescent light) - TMD26711
-#else
-	writeByte(TMD267x1_ADDR, 0x80|0x0F, 0x28);   // 100% LED drive strength, 4x gain, Use channel 1 diode (ch 1 seems less sensitive to fluorescent) light) - TMD26721
-#endif
-
+	writeByte(TMD267x1_ADDR, 0x80|0x0F, isTMD2671x?0x20:0x28);   // 100% LED drive strength, Use channel 1 diode (ch 1 seems less sensitive to fluorescent light) - TMD26711
 	writeByte(TMD267x1_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
 }
 
