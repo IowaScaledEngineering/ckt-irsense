@@ -214,8 +214,7 @@ void initializeTMD267x1()
 
 	if (readWord(TMD267x1_ADDR, 0x80|0x20|0x12, &i))
 	{
-		i = 0x00FF & i;
-		if (TMD26711_ID_VALUE == i || TMD26713_ID_VALUE == i) // Also applies for TMD277xx, same IDs
+		if ((i & 0xFF) < TMD26721_ID_VALUE) // Also applies for TMD277xx, same IDs
 			isTMD2671x = 1;
 	}
 	
