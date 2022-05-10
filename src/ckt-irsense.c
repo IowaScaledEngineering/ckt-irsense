@@ -25,11 +25,12 @@ LICENSE:
 #include <avr/interrupt.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
+#include <avr/eeprom.h>
 
 #define   TMD267x1_ADDR   0x39
 #define   INFO_ADDR       0x20
 
-#define   PROXIMITY_THRESHOLD     0x300
+#define   PROXIMITY_THRESHOLD_DEFAULT     0x300
 #define   SENSOR_ERROR_THRESHOLD  0
 #define   PPULSE_DEFAULT          8
 
@@ -248,13 +249,24 @@ void setOutputs(uint8_t detect)
 
 int main(void)
 {
+#ifdef TWOPIECE
+	//  Two Piece Specific Setup
+	uint16_t proximity_threshold = PROXIMITY_THRESHOLD_DEFAULT;
+	uint16_t count = 0;  // 256 decisecs * 60 (long delay mode) = 15360 max count
+	int16_t on_debounce, off_debounce;  // Signed so the math for off_debounce doesn't wrap
+#else
+	//  One Piece Specific Setup
+	uint16_t proximity_threshold = (eeprom_read_byte((const uint8_t *)0x00) << 8) + eeprom_read_byte((const uint8_t *)0x01);
+	if(0xFFFF == proximity_threshold)
+		proximity_threshold = PROXIMITY_THRESHOLD_DEFAULT;
+	uint8_t count = 0;
+	int8_t on_debounce, off_debounce;
+#endif
 	uint16_t proximity;
 	uint8_t detect = 0, sensorError = 0;
-	uint16_t count = 0;  // 256 decisecs * 60 (long delay mode) = 15360 max count
-	uint8_t ppulse;
+//	uint8_t ppulse;
 	uint8_t ack;
 	int16_t adc, adc_filt = 0;
-	int16_t on_debounce, off_debounce;  // Signed so the math for off_debounce doesn't wrap
 	
 	// Application initialization
 	init();
@@ -262,6 +274,7 @@ int main(void)
 	sei();
 
 	initializeTMD267x1();
+
 
 	while (1)
 	{
@@ -271,8 +284,8 @@ int main(void)
 		{
 			decisecs = 0;
 
-			ppulse = PPULSE_DEFAULT;
-			writeByte(TMD267x1_ADDR, 0x80|0x0E, ppulse);
+//			ppulse = PPULSE_DEFAULT;
+//			writeByte(TMD267x1_ADDR, 0x80|0x0E, ppulse);
 
 			// Read ADC
 			ADCSRA |= _BV(ADSC);  // Trigger conversion
@@ -289,7 +302,7 @@ int main(void)
 			off_debounce = (adc_filt > 512) ? 1 : RELEASE_DECISECS;
 #endif
 #ifdef LONG_DELAY
-			off_debounce *= 60;
+			off_debounce *= 64;
 #endif
 			// Telemetry
 //			writeByte(INFO_ADDR, adc_filt >> 8, adc_filt & 0xFF);
@@ -321,7 +334,7 @@ int main(void)
 				sensorError = 0;
 			}
 
-			if(!detect & (proximity >= PROXIMITY_THRESHOLD))
+			if(!detect & (proximity >= proximity_threshold))
 			{
 				// ON debounce
 				count++;
@@ -331,12 +344,12 @@ int main(void)
 					count = 0;
 				}
 			}
-			else if(!detect & (proximity < PROXIMITY_THRESHOLD))
+			else if(!detect & (proximity < proximity_threshold))
 			{
 				count = 0;
 			}
 
-			else if(detect & (proximity < PROXIMITY_THRESHOLD))
+			else if(detect & (proximity < proximity_threshold))
 			{
 				// OFF debounce
 				count++;
@@ -346,7 +359,7 @@ int main(void)
 					count = 0;
 				}
 			}
-			else if(detect & (proximity >= PROXIMITY_THRESHOLD))
+			else if(detect & (proximity >= proximity_threshold))
 			{
 				count = 0;
 			}
