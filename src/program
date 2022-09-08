@@ -1,7 +1,15 @@
 #!/bin/bash
 
-while [ true ]
+while true
 do
+	make read > /dev/null 2> /dev/null
+
+	while [ $? -ne 0 ]
+	do
+		echo -n .
+		make read > /dev/null 2> /dev/null
+	done
+
 	echo -e "\n\033[1;33mProgramming\033[0m\n"
 	espeak "Programming"
 	make firmware HEX=hex/ckt-irsense.hex
@@ -15,8 +23,10 @@ do
 		echo -e "\033[0;31mFailed\033[0m\n"
 		espeak "Failed"
 	fi
+	
+	sleep 1
 
-	read -t 0.1 -n 1000 discard
-	read -n 1 -p "Press any key to continue..."
-	echo
+#	read -t 0.1 -n 1000 discard
+#	read -n 1 -p "Press any key to continue..."
+#	echo
 done
