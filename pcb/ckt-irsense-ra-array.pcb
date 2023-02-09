@@ -1366,8 +1366,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 825.00mil 65.00mil 25.00mil 1 
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -1573,8 +1575,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 1175.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -1780,8 +1784,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 1525.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -1987,8 +1993,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 1875.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -2194,8 +2202,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 2225.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -2401,8 +2411,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 2575.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -2608,8 +2620,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 2925.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -2815,8 +2829,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 3275.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -3022,8 +3038,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 3625.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -3229,8 +3247,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 3975.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -3436,8 +3456,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 4325.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
@@ -3643,8 +3665,10 @@ Element["" "SM04B-SRSS" "J2" "unknown" 2510.00mil 4675.00mil 65.00mil 25.00mil 1
 	Pad[-0.4750mm 0.5000mm 0.4750mm 0.5000mm 23.62mil 20.00mil 29.62mil "2" "2" "square"]
 	Pad[-0.4750mm -0.5000mm 0.4750mm -0.5000mm 23.62mil 20.00mil 29.62mil "3" "3" "square"]
 	Pad[-0.4750mm -1.5000mm 0.4750mm -1.5000mm 23.62mil 20.00mil 29.62mil "4" "4" "square"]
-	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
-	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2"]
+	Pad[3.4625mm 2.6875mm 4.2875mm 2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.4625mm -2.6875mm 4.2875mm -2.6875mm 38.38mil 0.0000 44.38mil "M" "M" "square,edge2,nopaste"]
+	Pad[3.3mm 2.55mm 4.1mm 2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
+	Pad[3.3mm -2.55mm 4.1mm -2.55mm 25mil 0.0000 31mil "M" "M" "square,edge2"]
 
 	)
 
