@@ -1,1 +1,2 @@
-5"   0xE0 (tested on RA)
+5"   0x00E0 (tested on RA)
+4.5" 0x0120 (tested on IR)
