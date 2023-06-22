@@ -1,5 +1,0 @@
-Bar to left
-Fiducials:
-	Bottom left via
-	Upper right via
-	Upper left via
