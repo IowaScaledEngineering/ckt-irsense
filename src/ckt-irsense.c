@@ -235,6 +235,18 @@ void initializeTMD267x1()
 
 void setOutputs(uint8_t detect)
 {
+#ifdef DOUBLEOUTPUT
+	// In this mode, both outputs are active if detection, inactive otherwise
+	// Useful for MSS-type setups
+	if(detect)
+	{
+		PORTB |= _BV(PB3) | _BV(PB1);
+	}
+	else
+	{
+		PORTB &= ~(_BV(PB3) | _BV(PB1));
+	}
+#else
 	if(detect)
 	{
 		PORTB |= _BV(PB3);
@@ -245,6 +257,8 @@ void setOutputs(uint8_t detect)
 		PORTB &= ~_BV(PB3);
 		PORTB |= _BV(PB1);
 	}
+#endif
+
 }
 
 int main(void)
@@ -299,7 +313,7 @@ int main(void)
 			if(off_debounce < 1)
 				off_debounce = 1;  // Limit to 1
 #else
-			off_debounce = (adc_filt > 512) ? 1 : RELEASE_DECISECS;
+			off_debounce = (adc_filt > 512) ? 0 : RELEASE_DECISECS;
 #endif
 #ifdef LONG_DELAY
 			off_debounce *= 64;
