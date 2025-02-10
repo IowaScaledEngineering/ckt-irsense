@@ -1,0 +1,43 @@
+#!/bin/bash
+
+while true
+do
+
+	USB1=$(make read 2>&1 >/dev/null | grep bus:device | cut -d " " -f 6 | sed "1q;d")
+	echo $USB1
+        make read USB=:$USB1 > /dev/null 2> /dev/null
+	while [ $? -ne 0 ]
+	do
+		USB1=$(make read 2>&1 >/dev/null | grep bus:device | cut -d " " -f 6 | sed "1q;d")
+		echo $USB1
+	        make read USB=:$USB1 > /dev/null 2> /dev/null
+	done
+
+	USB2=$(make read 2>&1 >/dev/null | grep bus:device | cut -d " " -f 6 | sed "2q;d")
+	echo $USB2
+        make read USB=:$USB2 > /dev/null 2> /dev/null
+	while [ $? -ne 0 ]
+	do
+		USB2=$(make read 2>&1 >/dev/null | grep bus:device | cut -d " " -f 6 | sed "2q;d")
+		echo $USB2
+	        make read USB=:$USB2 > /dev/null 2> /dev/null
+	done
+	
+	echo -------
+
+	echo $USB1
+	gnome-terminal -- bash -c "./programX $USB1"
+	echo $USB2
+	gnome-terminal -- bash -c "./programX $USB2"
+
+	numproc=$(ps ax | grep "/bin/bash ./programX" | grep -v grep | wc -l)
+	while [ $numproc -ge 1 ]
+	do
+		sleep 1
+		echo -n .
+		numproc=$(ps ax | grep "/bin/bash ./programX" | grep -v grep | wc -l)
+	done
+	
+	echo
+
+done

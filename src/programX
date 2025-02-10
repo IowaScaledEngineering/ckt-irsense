@@ -1,0 +1,21 @@
+#!/bin/bash
+
+USBDEVICE=$1
+
+echo $USBDEVICE
+
+echo -e "\n\033[1;33mProgramming\033[0m\n"
+espeak "Programming"
+make firmware USB=:$USBDEVICE HEX=hex/ckt-irsense.hex
+make fuse USB=:$USBDEVICE
+
+if [ $? -eq 0 ]
+then 
+	echo -e "\033[0;32mComplete\033[0m\n"
+	espeak "Complete"
+else 
+	echo -e "\033[0;31mFailed\033[0m\n"
+	espeak "Failed"
+fi
+
+sleep 1
