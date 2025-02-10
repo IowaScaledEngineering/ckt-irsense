@@ -1082,6 +1082,7 @@ Layer(1 "top" "copper")
 	Line[129.92mil 282.28mil 224.57mil 282.28mil 18.00mil 20.00mil ""]
 	Line[70.08mil 167.72mil 70.08mil 205.91mil 15.00mil 20.00mil "clearline"]
 	Line[100.00mil 315.00mil 70.00mil 285.00mil 25.00mil 20.00mil "clearline"]
+	Line[2090.00mil 325.00mil 1165.00mil 325.00mil 8.00mil 20.00mil "clearline"]
 	Polygon("clearpoly")
 	(
 		[250.00mil 120.00mil] [160.00mil 120.00mil] [160.00mil 180.00mil] [250.00mil 180.00mil] 
@@ -1286,7 +1287,7 @@ Layer(4 "bottom silk" "silk")
 	Text[1515.00mil 275.00mil 2 80 "(C)2025" "clearline,onsolder"]
 	Text[1780.00mil 275.00mil 2 80 "CC-BY-SA" "clearline,onsolder"]
 	Text[19.5471mm 115.00mil 2 89 "iascaled.com" "clearline,onsolder"]
-	Text[1860.00mil 205.00mil 2 90 "CKT-IRSENSE-RA v4.4" "clearline,onsolder"]
+	Text[1860.00mil 205.00mil 2 90 "CKT-IRSENSE-RA v4.5" "clearline,onsolder"]
 )
 Layer(5 "top silk" "silk")
 (
