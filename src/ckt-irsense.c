@@ -21,11 +21,13 @@ LICENSE:
 *************************************************************************/
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
 #include <avr/eeprom.h>
+
 
 #define   TMD267x1_ADDR   0x39
 #define   INFO_ADDR       0x20
@@ -233,7 +235,7 @@ void initializeTMD267x1()
 	writeByte(TMD267x1_ADDR, 0x80|0x00, 0x27);   // Power ON, Enable proximity, Enable proximity interrupt (not used currently)
 }
 
-void setOutputs(uint8_t detect)
+void setOutputs(bool detect)
 {
 #ifdef DOUBLEOUTPUT
 	// In this mode, both outputs are active if detection, inactive otherwise
@@ -246,6 +248,21 @@ void setOutputs(uint8_t detect)
 	{
 		PORTB &= ~(_BV(PB3) | _BV(PB1));
 	}
+
+#elif defined PULSE_OUTPUT
+	static bool prev_detect = false;
+	if (prev_detect != detect)
+	{
+		if (prev_detect)
+			PORTB |= _BV(PB1);
+		else
+			PORTB |= _BV(PB3);
+	} else {
+		PORTB &= ~(_BV(PB3) | _BV(PB1));
+	}
+	prev_detect = detect;
+
+	
 #else
 	if(detect)
 	{
@@ -277,7 +294,8 @@ int main(void)
 	int8_t on_debounce, off_debounce;
 #endif
 	uint16_t proximity;
-	uint8_t detect = 0, sensorError = 0;
+	bool detect = false;
+	uint8_t sensorError = 0;
 //	uint8_t ppulse;
 	uint8_t ack;
 	int16_t adc, adc_filt = 0;
@@ -297,7 +315,6 @@ int main(void)
 		if(decisecs >= 1)
 		{
 			decisecs = 0;
-
 //			ppulse = PPULSE_DEFAULT;
 //			writeByte(TMD267x1_ADDR, 0x80|0x0E, ppulse);
 
@@ -315,6 +332,7 @@ int main(void)
 #else
 			off_debounce = (adc_filt > 512) ? 0 : RELEASE_DECISECS;
 #endif
+
 #ifdef LONG_DELAY
 			off_debounce *= 64;
 #endif
@@ -336,7 +354,7 @@ int main(void)
 
 				if (sensorError > SENSOR_ERROR_THRESHOLD)
 				{
-					detect = 0;
+					detect = false;
 					proximity = 0;
 					count = 0;
 					setOutputs(detect);
@@ -354,7 +372,7 @@ int main(void)
 				count++;
 				if(count > on_debounce)
 				{
-					detect = 1;
+					detect = true;
 					count = 0;
 				}
 			}
@@ -369,7 +387,7 @@ int main(void)
 				count++;
 				if(count > off_debounce)
 				{
-					detect = 0;
+					detect = false;
 					count = 0;
 				}
 			}
@@ -377,9 +395,10 @@ int main(void)
 			{
 				count = 0;
 			}
+			setOutputs(detect);
+
 		}
 
-		setOutputs(detect);
 	}
 }
 
