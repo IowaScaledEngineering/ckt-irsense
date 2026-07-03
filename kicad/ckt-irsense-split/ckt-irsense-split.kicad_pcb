@@ -4307,7 +4307,7 @@
 		(descr "SOT, 6 Pin (https://www.jedec.org/sites/default/files/docs/Mo-178c.PDF variant AB), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "Q1"
-			(at 3.302 0.254 0)
+			(at -3.048 0 0)
 			(layer "F.SilkS")
 			(uuid "0cbabafa-c060-4fcd-9077-ea04407fed64")
 			(effects
